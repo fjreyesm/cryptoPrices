@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import CoinsList from "./CoinsBoard";
 
 function CallApi() {
-  const [data, setData] = useState(null);
+  const [coins, setCoins] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -11,24 +12,34 @@ function CallApi() {
       setLoading(true);
       setError(null);
       try {
-        const result = await axios.get(
-          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
+        const result = await fetch(
+          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1&sparkline=false"
         );
-        setData(result.data);
+        const data = await result.json();
+        setCoins(data);
       } catch (error) {
         setError(error);
       }
       setLoading(false);
     };
     fetchData();
+    console.log(coins);
   }, []);
 
+  // coins.map((coin) => {
   return (
     <div>
-      <h2>Call API 2</h2>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error.message}</p>}
-      {data && <p>{JSON.stringify(data)}</p>}
+      <h2>Call API 3</h2>
+      {coins.map((coin) => {
+        return (
+          <CoinsList
+            key={coin.id}
+            name={coin.name}
+            price={coin.price}
+            image={coin.image}
+          />
+        );
+      })}
     </div>
   );
 }
