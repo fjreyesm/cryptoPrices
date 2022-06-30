@@ -1,15 +1,25 @@
 import React from "react";
 import "../styles/board.css";
 
-const CoinsBoard = ({ id, name, price, image, symbol }) => {
+const CoinsBoard = ({ id, name, price, image, symbol, total24h }) => {
   return (
-    <div className="coins-rows">
-      <p>{id}</p>
-      <img src={image} alt={name} className="imagen" />
-      <h2 className="cryptoname"> {name}</h2>
-      <p>{price}</p>
-      <p>{symbol}</p>
-    </div>
+    <tr className="coins-rows">
+      <td>
+        <img src={image} alt={name} className="imagen" />
+      </td>
+      <td>
+        <h2 className="cryptoname"> {name}</h2>
+      </td>
+      <td>
+        <p>{symbol}</p>
+      </td>
+      <td>
+        <p>{total24h}</p>
+      </td>
+      <td>
+        <p>{price}</p>
+      </td>
+    </tr>
   );
 };
 

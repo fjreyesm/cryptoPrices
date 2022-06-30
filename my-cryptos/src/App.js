@@ -6,6 +6,7 @@ function App() {
   const [coins, setCoins] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
   const getCoins = async () => {
     try {
@@ -13,10 +14,15 @@ function App() {
       const response = await fetch(
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1&sparkline=false"
       );
-      const divisas = await response.json();
-      return divisas;
+      if (response.ok) {
+        const divisas = await response.json();
+        setIsLoading(false);
+        return divisas;
+      } else {
+        setError("Hubo un error al obtener los datos");
+      }
     } catch (error) {
-      throw error;
+      setError("No pudimos hacer la solicitud" + error);
     }
   };
 
@@ -24,6 +30,7 @@ function App() {
     try {
       const data = await getCoins();
       setCoins(data);
+      console.log("fetched: " + coins);
       setIsLoading(false);
     } catch (error) {
       setError(error);
@@ -31,10 +38,9 @@ function App() {
   };
 
   useEffect(() => {
-    setIsLoading(true);
     fetchCoins();
     console.log("Despues de Fetch " + coins);
-  }, []);
+  }, [isLoading]);
 
   if (isLoading) {
     return (
@@ -59,11 +65,59 @@ function App() {
     });
   };
 
+  const siguiente = () => {
+    setIsLoading(true);
+  };
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+  const selectedCoins = coins.filter((coin) => {
+    return coin.name.toLowerCase().includes(search.toLowerCase());
+  });
+  //{tabla();}
   return (
     <>
       <div className="App">
-        <h1>Tabla de Cryptos 11</h1>
-        {tabla()}
+        <h1>Crytos</h1>
+        <h2>Tabla de Precios</h2>
+        <form>
+          <input
+            type="text"
+            placeholder="busqueda"
+            className="busqueda"
+            onChange={handleChange}
+          />
+        </form>
+
+        <button onClick={siguiente}> Next</button>
+        <h2>Filtrado</h2>
+        <table className="tabla">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Simbolo</th>
+              <th>Precio</th>
+              <th>24h</th>
+            </tr>
+          </thead>
+          <tbody>
+            {selectedCoins.map((coin) => {
+              return (
+                <CoinsBoard
+                  key={coin.id}
+                  id={coin.id}
+                  name={coin.name}
+                  symbol={coin.symbol}
+                  image={coin.image}
+                  price={coin.current_price}
+                  total24h={coin.total_volume}
+                />
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </>
   );
