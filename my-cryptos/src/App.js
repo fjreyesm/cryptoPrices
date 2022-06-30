@@ -92,18 +92,32 @@ function App() {
 
         <button onClick={siguiente}> Next</button>
         <h2>Filtrado</h2>
-        {selectedCoins.map((coin) => {
-          return (
-            <CoinsBoard
-              key={coin.id}
-              id={coin.id}
-              name={coin.name}
-              symbol={coin.symbol}
-              image={coin.image}
-              price={coin.current_price}
-            />
-          );
-        })}
+        <table className="tabla">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Simbolo</th>
+              <th>Precio</th>
+              <th>24h</th>
+            </tr>
+          </thead>
+          <tbody>
+            {selectedCoins.map((coin) => {
+              return (
+                <CoinsBoard
+                  key={coin.id}
+                  id={coin.id}
+                  name={coin.name}
+                  symbol={coin.symbol}
+                  image={coin.image}
+                  price={coin.current_price}
+                  total24h={coin.total_volume}
+                />
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </>
   );
