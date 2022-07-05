@@ -1,6 +1,7 @@
-import "./App.css";
+//import "./App.css";
 import { useState, useEffect } from "react";
 import CoinsBoard from "./components/CoinsBoard";
+import styled from "styled-components";
 
 function App() {
   const [coins, setCoins] = useState(null);
@@ -8,15 +9,24 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
 
+  const Title = styled.h1`
+    margin: 1em 0 0 0;
+    letter-spacing: 0.8px;
+  `;
+
   const getCoins = async () => {
     try {
       console.log("entré en getCoins");
+      console.log("is loading?" + isLoading);
       const response = await fetch(
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1&sparkline=false"
       );
+      console.log("response" + response);
       if (response.ok) {
         const divisas = await response.json();
+        console.log("respuesta json" + divisas);
         setIsLoading(false);
+        console.log("is loading?" + isLoading);
         return divisas;
       } else {
         setError("Hubo un error al obtener los datos");
@@ -29,6 +39,7 @@ function App() {
   const fetchCoins = async () => {
     try {
       const data = await getCoins();
+      console.log("is loading in fecht?" + isLoading);
       setCoins(data);
       console.log("fetched: " + coins);
       setIsLoading(false);
@@ -39,7 +50,8 @@ function App() {
 
   useEffect(() => {
     fetchCoins();
-    console.log("Despues de Fetch " + coins);
+    console.log("Despues de Fetch en Use effect" + coins);
+    console.log("is loading in useEfect?" + isLoading);
   }, [isLoading]);
 
   if (isLoading) {
@@ -75,11 +87,24 @@ function App() {
   const selectedCoins = coins.filter((coin) => {
     return coin.name.toLowerCase().includes(search.toLowerCase());
   });
+  const Button = styled.button`
+    font-size: 1em;
+    margin: 1em;
+    padding: 0.25em 1em;
+    border: 2px solid palevioletred;
+    border-radius: 3px;
+
+    background: ${(props) => (props.primary ? "orange" : "white")};
+    color: ${(props) => (props.primary ? "white" : "orange")};
+  `;
+
   //{tabla();}
+  //
   return (
     <>
       <div className="App">
-        <h1>Crytos</h1>
+        <h1>Cryptos</h1>
+        <Title> Title styled</Title>
         <h2>Tabla de Precios</h2>
         <form>
           <input
@@ -90,8 +115,10 @@ function App() {
           />
         </form>
 
-        <button onClick={siguiente}> Next</button>
-        <h2>Filtrado</h2>
+        <button> Boton normal</button>
+        <Button onClick={siguiente}> Siguientes</Button>
+
+        <h2>Filtrado 2</h2>
         <table className="tabla">
           <thead>
             <tr>
@@ -112,6 +139,7 @@ function App() {
                   symbol={coin.symbol}
                   image={coin.image}
                   price={coin.current_price}
+                  pricechange24={coin.price_change_percentage_24h}
                   total24h={coin.total_volume}
                 />
               );

@@ -1,7 +1,16 @@
 import React from "react";
 import "../styles/board.css";
+import styled from "styled-components";
 
-const CoinsBoard = ({ id, name, price, image, symbol, total24h }) => {
+const CoinsBoard = ({
+  id,
+  name,
+  price,
+  image,
+  symbol,
+  pricechange24,
+  total24h,
+}) => {
   return (
     <tr className="coins-rows">
       <td>
@@ -13,11 +22,28 @@ const CoinsBoard = ({ id, name, price, image, symbol, total24h }) => {
       <td>
         <p>{symbol}</p>
       </td>
+
       <td>
-        <p>{total24h}</p>
+        {pricechange24 < 0 ? (
+          <p className="red">{pricechange24.toFixed(2)}%</p>
+        ) : (
+          <p className="green">{pricechange24.toFixed(2)}%</p>
+        )}
+      </td>
+      <td>
+        <img
+          loading="lazy"
+          alt="tether (USDT) 7d chart"
+          src="https://www.coingecko.com/coins/325/sparkline"
+          width="135"
+          height="50"
+        ></img>
       </td>
       <td>
         <p>{price}</p>
+      </td>
+      <td>
+        <p>{total24h}</p>
       </td>
     </tr>
   );
