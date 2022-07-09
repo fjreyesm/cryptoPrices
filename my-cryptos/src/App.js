@@ -14,12 +14,23 @@ function App() {
     letter-spacing: 0.8px;
   `;
 
+  const Button = styled.button`
+    font-size: 1em;
+    margin: 1em;
+    padding: 0.25em 1em;
+    border: 2px solid black;
+    border-radius: 3px;
+
+    background: ${(props) => (props.primary ? "orange" : "white")};
+    color: ${(props) => (props.primary ? "white" : "black")};
+  `;
+
   const getCoins = async () => {
     try {
       console.log("entré en getCoins");
       console.log("is loading?" + isLoading);
       const response = await fetch(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1&sparkline=false"
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=200&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d"
       );
       console.log("response" + response);
       if (response.ok) {
@@ -62,21 +73,6 @@ function App() {
     );
   }
 
-  const tabla = () => {
-    return coins.map((coin) => {
-      return (
-        <CoinsBoard
-          key={coin.id}
-          id={coin.id}
-          name={coin.name}
-          symbol={coin.symbol}
-          image={coin.image}
-          price={coin.current_price}
-        />
-      );
-    });
-  };
-
   const siguiente = () => {
     setIsLoading(true);
   };
@@ -87,24 +83,13 @@ function App() {
   const selectedCoins = coins.filter((coin) => {
     return coin.name.toLowerCase().includes(search.toLowerCase());
   });
-  const Button = styled.button`
-    font-size: 1em;
-    margin: 1em;
-    padding: 0.25em 1em;
-    border: 2px solid palevioletred;
-    border-radius: 3px;
-
-    background: ${(props) => (props.primary ? "orange" : "white")};
-    color: ${(props) => (props.primary ? "white" : "orange")};
-  `;
 
   //{tabla();}
   //
   return (
     <>
       <div className="App">
-        <h1>Cryptos</h1>
-        <Title> Title styled</Title>
+        <Title>Crytomonedas </Title>
         <h2>Tabla de Precios</h2>
         <form>
           <input
@@ -114,8 +99,6 @@ function App() {
             onChange={handleChange}
           />
         </form>
-
-        <button> Boton normal</button>
         <Button onClick={siguiente}> Siguientes</Button>
 
         <h2>Filtrado 2</h2>
@@ -126,7 +109,9 @@ function App() {
               <th>Nombre</th>
               <th>Simbolo</th>
               <th>Precio</th>
+              <th>1h</th>
               <th>24h</th>
+              <th>7d</th>
             </tr>
           </thead>
           <tbody>
@@ -139,8 +124,10 @@ function App() {
                   symbol={coin.symbol}
                   image={coin.image}
                   price={coin.current_price}
-                  pricechange24={coin.price_change_percentage_24h}
-                  total24h={coin.total_volume}
+                  pricechange1={coin.price_change_percentage_1h_in_currency}
+                  pricechange24={coin.price_change_percentage_24h_in_currency}
+                  pricechange7d={coin.price_change_percentage_7d_in_currency}
+                  pricechange30d={coin.price_change_percentage_30d_in_currency}
                 />
               );
             })}
