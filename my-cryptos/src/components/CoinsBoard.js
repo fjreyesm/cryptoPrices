@@ -12,12 +12,12 @@ const CoinsBoard = ({
   pricechange24,
   pricechange7d,
   pricechange30d,
-  total24h,
+  volumen24h,
 }) => {
-  console.log("1h " + pricechange1);
-  console.log("24h " + pricechange24);
-  console.log("7d " + pricechange7d);
-  console.log("30d " + pricechange30d);
+  console.log("1h " + typeof pricechange1);
+  console.log("24h " + typeof pricechange24);
+  console.log("7d " + typeof pricechange7d);
+  console.log("30d " + typeof pricechange30d);
   return (
     <tr className="coins-rows">
       <td>
@@ -37,7 +37,7 @@ const CoinsBoard = ({
         {pricechange1 < 0 ? (
           <p className="red">{pricechange1}</p>
         ) : (
-          <p className="green">{pricechange1}</p>
+          <p className="green">{pricechange24.toFixed(2)}%</p>
         )}
       </td>
 
@@ -62,6 +62,9 @@ const CoinsBoard = ({
         ) : (
           <p className="green">{pricechange30d}</p>
         )}
+      </td>
+      <td>
+        <p>{volumen24h}</p>
       </td>
       <td>
         <img

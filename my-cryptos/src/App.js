@@ -30,7 +30,7 @@ function App() {
       console.log("entré en getCoins");
       console.log("is loading?" + isLoading);
       const response = await fetch(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=200&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d"
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=200&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C"
       );
       console.log("response" + response);
       if (response.ok) {
@@ -112,6 +112,8 @@ function App() {
               <th>1h</th>
               <th>24h</th>
               <th>7d</th>
+              <th>30d</th>
+              <th>24h Volumen</th>
             </tr>
           </thead>
           <tbody>
@@ -128,6 +130,7 @@ function App() {
                   pricechange24={coin.price_change_percentage_24h_in_currency}
                   pricechange7d={coin.price_change_percentage_7d_in_currency}
                   pricechange30d={coin.price_change_percentage_30d_in_currency}
+                  volumen24h={coin.market_cap_change_24h}
                 />
               );
             })}
