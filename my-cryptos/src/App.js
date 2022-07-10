@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import CoinsBoard from "./components/CoinsBoard";
 import styled from "styled-components";
+import LineChart from "./components/LineChart";
 
 function App() {
   const [coins, setCoins] = useState(null);
@@ -91,6 +92,7 @@ function App() {
       <div className="App">
         <Title>Crytomonedas </Title>
         <h2>Tabla de Precios</h2>
+
         <form>
           <input
             type="text"
@@ -102,6 +104,13 @@ function App() {
         <Button onClick={siguiente}> Opcion X</Button>
 
         <h2>Filtrado 2</h2>
+        <img
+          loading="lazy"
+          alt="tether (USDT) 7d chart"
+          src="https://www.coingecko.com/coins/325/sparkline"
+          width="270"
+          height="100"
+        ></img>
         <table className="tabla">
           <thead>
             <tr>
@@ -119,19 +128,24 @@ function App() {
           <tbody>
             {selectedCoins.map((coin) => {
               return (
-                <CoinsBoard
-                  key={coin.id}
-                  id={coin.id}
-                  name={coin.name}
-                  symbol={coin.symbol}
-                  image={coin.image}
-                  price={coin.current_price}
-                  pricechange1={coin.price_change_percentage_1h_in_currency}
-                  pricechange24={coin.price_change_percentage_24h_in_currency}
-                  pricechange7d={coin.price_change_percentage_7d_in_currency}
-                  pricechange30d={coin.price_change_percentage_30d_in_currency}
-                  volumen24h={coin.market_cap_change_24h}
-                />
+                <>
+                  <CoinsBoard
+                    key={coin.id}
+                    id={coin.id}
+                    name={coin.name}
+                    symbol={coin.symbol}
+                    image={coin.image}
+                    price={coin.current_price}
+                    pricechange1={coin.price_change_percentage_1h_in_currency}
+                    pricechange24={coin.price_change_percentage_24h_in_currency}
+                    pricechange7d={coin.price_change_percentage_7d_in_currency}
+                    pricechange30d={
+                      coin.price_change_percentage_30d_in_currency
+                    }
+                    volumen24h={coin.market_cap_change_24h}
+                    sparkline={coin.sparkline_in_7d}
+                  />
+                </>
               );
             })}
           </tbody>
