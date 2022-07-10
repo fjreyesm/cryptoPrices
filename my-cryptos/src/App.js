@@ -99,7 +99,7 @@ function App() {
             onChange={handleChange}
           />
         </form>
-        <Button onClick={siguiente}> Siguientes</Button>
+        <Button onClick={siguiente}> Opcion X</Button>
 
         <h2>Filtrado 2</h2>
         <table className="tabla">

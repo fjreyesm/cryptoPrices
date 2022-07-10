@@ -31,13 +31,13 @@ const CoinsBoard = ({
       </td>
 
       <td>
-        <p>{price}</p>
+        <p>{price}€</p>
       </td>
       <td>
         {pricechange1 < 0 ? (
-          <p className="red">{pricechange1}</p>
+          <p className="red">{pricechange1.toFixed(2)}%</p>
         ) : (
-          <p className="green">{pricechange24.toFixed(2)}%</p>
+          <p className="green">{pricechange1.toFixed(2)}%</p>
         )}
       </td>
 
@@ -50,21 +50,21 @@ const CoinsBoard = ({
       </td>
       <td>
         {pricechange7d < 0 ? (
-          <p className="red">{pricechange7d}</p>
+          <p className="red">{pricechange7d.toFixed(2)}%</p>
         ) : (
-          <p className="green">{pricechange7d}</p>
+          <p className="green">{pricechange7d.toFixed(2)}%</p>
         )}
       </td>
 
       <td>
         {pricechange30d < 0 ? (
-          <p className="red">{pricechange30d}</p>
+          <p className="red">{pricechange30d.toFixed(2)}%</p>
         ) : (
-          <p className="green">{pricechange30d}</p>
+          <p className="green">{pricechange30d.toFixed(2)}%</p>
         )}
       </td>
       <td>
-        <p>{volumen24h}</p>
+        <p>{volumen24h.toFixed(2)}€</p>
       </td>
       <td>
         <img
