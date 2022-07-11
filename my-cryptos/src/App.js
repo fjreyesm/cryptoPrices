@@ -91,7 +91,7 @@ function App() {
     <>
       <div className="App">
         <Title>Crytomonedas </Title>
-        <h2>Tabla de Precios</h2>
+        <h2>Tabla de Precios con rutas 2</h2>
 
         <form>
           <input
