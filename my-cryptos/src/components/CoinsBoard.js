@@ -2,7 +2,9 @@ import React from "react";
 import "../styles/board.css";
 import styled from "styled-components";
 import LineChart from "./LineChart";
+import GraphLast7d from "./GraphLast7d";
 //import { Line } from "@ant-design/charts";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const CoinsBoard = ({
   id,
@@ -17,11 +19,8 @@ const CoinsBoard = ({
   volumen24h,
   sparkline,
 }) => {
-  console.log("1h " + typeof pricechange1);
-  console.log("24h " + typeof pricechange24);
-  console.log("7d " + typeof pricechange7d);
-  console.log("spark " + sparkline.price[0]);
-  console.log("spark " + sparkline.price[17]);
+  console.log("spark " + sparkline.price);
+  console.log("spark " + typeof sparkline.price);
   return (
     <>
       <tr className="coins-rows">
@@ -72,7 +71,7 @@ const CoinsBoard = ({
           <p>{volumen24h.toFixed(2)}€</p>
         </td>
         <td>
-          <LineChart />
+          <GraphLast7d spark={sparkline.price} />
         </td>
       </tr>
     </>

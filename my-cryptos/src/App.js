@@ -2,7 +2,9 @@
 import { useState, useEffect } from "react";
 import CoinsBoard from "./components/CoinsBoard";
 import styled from "styled-components";
-import LineChart from "./components/LineChart";
+//import LineChart from "./components/LineChart";
+import { Routes, Route } from "react-router-dom";
+import Hola from "./pages/Hola";
 
 function App() {
   const [coins, setCoins] = useState(null);
@@ -31,7 +33,7 @@ function App() {
       console.log("entré en getCoins");
       console.log("is loading?" + isLoading);
       const response = await fetch(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=200&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C"
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C"
       );
       console.log("response" + response);
       if (response.ok) {
@@ -89,9 +91,12 @@ function App() {
   //
   return (
     <>
+      <Routes>
+        <Route path="/hola" element="{<Hola/>}" />
+      </Routes>
       <div className="App">
         <Title>Crytomonedas </Title>
-        <h2>Tabla de Precios con rutas 2</h2>
+        <h2>Tabla de Precios con enrutado</h2>
 
         <form>
           <input
@@ -103,7 +108,7 @@ function App() {
         </form>
         <Button onClick={siguiente}> Opcion X</Button>
 
-        <h2>Filtrado 2</h2>
+        <h2>Filtrado</h2>
         <img
           loading="lazy"
           alt="tether (USDT) 7d chart"
