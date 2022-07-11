@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/board.css";
 import styled from "styled-components";
 import LineChart from "./LineChart";
+//import { Line } from "@ant-design/charts";
 
 const CoinsBoard = ({
   id,
