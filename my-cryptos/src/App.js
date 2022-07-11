@@ -90,7 +90,7 @@ function App() {
   return (
     <>
       <div className="App">
-        <Title>Crytomonedas </Title>
+        <Title>Crytomonedas con rutas </Title>
         <h2>Tabla de Precios</h2>
 
         <form>
