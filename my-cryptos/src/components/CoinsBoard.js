@@ -19,8 +19,6 @@ const CoinsBoard = ({
   volumen24h,
   sparkline,
 }) => {
-  console.log("spark " + sparkline.price);
-  console.log("spark " + typeof sparkline.price);
   return (
     <>
       <tr className="coins-rows">
@@ -71,7 +69,11 @@ const CoinsBoard = ({
           <p>{volumen24h.toFixed(2)}€</p>
         </td>
         <td>
-          <GraphLast7d spark={sparkline.price} />
+          {pricechange7d < 0 ? (
+            <GraphLast7d spark={sparkline.price} color="red" nombre={name} />
+          ) : (
+            <GraphLast7d spark={sparkline.price} color="green" nombre={name} />
+          )}
         </td>
       </tr>
     </>

@@ -31,11 +31,11 @@ function App() {
   const getCoins = async () => {
     try {
       console.log("entré en getCoins");
-      console.log("is loading?" + isLoading);
+
       const response = await fetch(
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C"
       );
-      console.log("response" + response);
+
       if (response.ok) {
         const divisas = await response.json();
         console.log("respuesta json" + divisas);
@@ -55,7 +55,7 @@ function App() {
       const data = await getCoins();
       console.log("is loading in fecht?" + isLoading);
       setCoins(data);
-      console.log("fetched: " + coins);
+
       setIsLoading(false);
     } catch (error) {
       setError(error);
@@ -64,8 +64,6 @@ function App() {
 
   useEffect(() => {
     fetchCoins();
-    console.log("Despues de Fetch en Use effect" + coins);
-    console.log("is loading in useEfect?" + isLoading);
   }, [isLoading]);
 
   if (isLoading) {
