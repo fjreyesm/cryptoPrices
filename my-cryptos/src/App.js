@@ -1,4 +1,7 @@
 //import "./App.css";
+
+import React from "react";
+
 import { useState, useEffect } from "react";
 import CoinsRow from "./components/CoinsRow";
 import styled from "styled-components";
@@ -27,13 +30,11 @@ function App() {
     color: ${(props) => (props.primary ? "white" : "black")};
   `;
 
-  const getCoins = async () => {
+  const getCoins = async (url) => {
     try {
       console.log("entré en getCoins");
 
-      const response = await fetch(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=5&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C"
-      );
+      const response = await fetch(url);
 
       if (response.ok) {
         const divisas = await response.json();
@@ -49,9 +50,9 @@ function App() {
     }
   };
 
-  const fetchCoins = async () => {
+  const fetchCoins = async (url) => {
     try {
-      const data = await getCoins();
+      const data = await getCoins(url);
       console.log("is loading in fecht?" + isLoading);
       setCoins(data);
 
@@ -62,7 +63,9 @@ function App() {
   };
 
   useEffect(() => {
-    fetchCoins();
+    fetchCoins(
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C"
+    );
   }, [isLoading]);
 
   if (isLoading) {
@@ -81,12 +84,30 @@ function App() {
     setSearch(e.target.value);
   };
 
-  const top10 = () => {
-    const url = "https://rickandmortyapi.com/api/character";
+  const top5 = () => {
+    const url =
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=5&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
+    fetchCoins(url);
 
-    //const { data, error2, loading } = useFetch(url);
-    //console.log("la data de useFetch es" + { data, error2, loading });
-    return <p> top 10 bitcoins</p>;
+    console.log("ltop 3");
+    return <p> top 3</p>;
+  };
+  const top20 = () => {
+    const url =
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
+    fetchCoins(url);
+
+    console.log("top 5");
+    return <p> top 3</p>;
+  };
+
+  const top100 = () => {
+    const url =
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
+    fetchCoins(url);
+
+    console.log("top 5");
+    return <p> top 3</p>;
   };
 
   const selectedCoins = coins.filter((coin) => {
@@ -109,9 +130,9 @@ function App() {
             onChange={handleChange}
           />
         </form>
-        <Button onClick={top10}> Top 10</Button>
-        <Button onClick={siguiente}> Top 50</Button>
-        <Button onClick={siguiente}> Top 100</Button>
+        <Button onClick={top5}> Top 5</Button>
+        <Button onClick={top20}> Top 20</Button>
+        <Button onClick={top100}> Top 100</Button>
 
         <table className="tabla">
           <thead>
