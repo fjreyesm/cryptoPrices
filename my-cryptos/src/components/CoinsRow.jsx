@@ -1,12 +1,10 @@
 import React from "react";
 import "../styles/board.css";
-import styled from "styled-components";
-import LineChart from "./LineChart";
+
 import GraphLast7d from "./GraphLast7d";
 //import { Line } from "@ant-design/charts";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const CoinsBoard = ({
+const CoinsRow = ({
   id,
   name,
   price,
@@ -80,4 +78,4 @@ const CoinsBoard = ({
   );
 };
 
-export default CoinsBoard;
+export default CoinsRow;

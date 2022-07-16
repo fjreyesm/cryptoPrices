@@ -1,10 +1,9 @@
 //import "./App.css";
 import { useState, useEffect } from "react";
-import CoinsBoard from "./components/CoinsBoard";
+import CoinsRow from "./components/CoinsRow";
 import styled from "styled-components";
+import useFetch from "./hooks/useFetch";
 //import LineChart from "./components/LineChart";
-import { Routes, Route } from "react-router-dom";
-import Hola from "./pages/Hola";
 
 function App() {
   const [coins, setCoins] = useState(null);
@@ -33,12 +32,12 @@ function App() {
       console.log("entré en getCoins");
 
       const response = await fetch(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C"
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=5&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C"
       );
 
       if (response.ok) {
         const divisas = await response.json();
-        console.log("respuesta json" + divisas);
+
         setIsLoading(false);
         console.log("is loading?" + isLoading);
         return divisas;
@@ -81,20 +80,26 @@ function App() {
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
+
+  const top10 = () => {
+    const url = "https://rickandmortyapi.com/api/character";
+
+    //const { data, error2, loading } = useFetch(url);
+    //console.log("la data de useFetch es" + { data, error2, loading });
+    return <p> top 10 bitcoins</p>;
+  };
+
   const selectedCoins = coins.filter((coin) => {
     return coin.name.toLowerCase().includes(search.toLowerCase());
   });
-
+  console.log("error" + error);
   //{tabla();}
   //
+
   return (
     <>
-      <Routes>
-        <Route path="/hola" element="{<Hola/>}" />
-      </Routes>
       <div className="App">
-        <Title>Crytomonedas </Title>
-        <h2>Tabla de Precios con enrutado</h2>
+        <Title>Tabla de Crytomonedas </Title>
 
         <form>
           <input
@@ -104,16 +109,10 @@ function App() {
             onChange={handleChange}
           />
         </form>
-        <Button onClick={siguiente}> Opcion X</Button>
+        <Button onClick={top10}> Top 10</Button>
+        <Button onClick={siguiente}> Top 50</Button>
+        <Button onClick={siguiente}> Top 100</Button>
 
-        <h2>Filtrado</h2>
-        <img
-          loading="lazy"
-          alt="tether (USDT) 7d chart"
-          src="https://www.coingecko.com/coins/325/sparkline"
-          width="270"
-          height="100"
-        ></img>
         <table className="tabla">
           <thead>
             <tr>
@@ -132,7 +131,7 @@ function App() {
             {selectedCoins.map((coin) => {
               return (
                 <>
-                  <CoinsBoard
+                  <CoinsRow
                     key={coin.id}
                     id={coin.id}
                     name={coin.name}
