@@ -26,7 +26,7 @@ const Header = () => {
   `;
   return (
     <div>
-      <Title>Principales Critomonedas por capitalización de mercado</Title>
+      <Title>Principales Critomonedas por capitalización</Title>
     </div>
   );
 };

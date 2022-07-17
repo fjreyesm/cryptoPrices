@@ -15,10 +15,36 @@ const CoinsRow = ({
   volumen24h,
   sparkline,
 }) => {
+  console.log(
+    "id" +
+      id +
+      "name" +
+      name +
+      "price" +
+      price +
+      "image" +
+      image +
+      "symbol" +
+      symbol +
+      "pricechange1" +
+      pricechange1 +
+      "pricechange24" +
+      pricechange24 +
+      "pricechange7d" +
+      pricechange7d +
+      "pricechange30d" +
+      pricechange30d +
+      "volumen24h" +
+      volumen24h +
+      "sparkline" +
+      sparkline
+  );
   return (
     <>
       <tr className="coins-rows">
+        no entra en tabla
         <td>
+          no entra en elemento
           <img src={image} alt={name} className="imagen" />
         </td>
         <td>
@@ -27,7 +53,6 @@ const CoinsRow = ({
         <td>
           <p>{symbol}</p>
         </td>
-
         <td>
           <p>{price}€</p>
         </td>
@@ -38,7 +63,6 @@ const CoinsRow = ({
             <p className="green">{pricechange1.toFixed(2)}%</p>
           )}
         </td>
-
         <td>
           {pricechange24 < 0 ? (
             <p className="red">{pricechange24.toFixed(2)}%</p>
@@ -53,7 +77,6 @@ const CoinsRow = ({
             <p className="green">{pricechange7d.toFixed(2)}%</p>
           )}
         </td>
-
         <td>
           {pricechange30d < 0 ? (
             <p className="red">{pricechange30d.toFixed(2)}%</p>

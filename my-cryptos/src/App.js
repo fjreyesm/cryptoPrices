@@ -20,6 +20,16 @@ function App() {
     letter-spacing: 0.8px;
   `;
 
+  const Filter = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  `;
+  const Opciones = styled(Filter)`
+    justify-content: flex-end;
+    margin-right: 7em;
+  `;
+
   const Button = styled.button`
     font-size: 1em;
     margin: 1em;
@@ -107,7 +117,7 @@ function App() {
     fetchCoins(url);
 
     console.log("top 5");
-    return <p> top 3</p>;
+    return <p> top 20</p>;
   };
 
   const top100 = () => {
@@ -117,6 +127,15 @@ function App() {
 
     console.log("top 5");
     return <p> top 3</p>;
+  };
+
+  const stable = () => {
+    const url =
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&category=stablecoins&order=market_cap_desc&per_page=10&page=1&sparkline=false";
+    fetchCoins(url);
+
+    console.log("stable coin");
+    return <p> estable</p>;
   };
 
   const selectedCoins = coins.filter((coin) => {
@@ -130,6 +149,17 @@ function App() {
     <>
       <Header />
       <div className="App">
+        <Filter>
+          <h3> Lista de seguimiento</h3>
+          <form>
+            <input
+              type="text"
+              placeholder="busqueda"
+              className="busqueda"
+              onChange={handleChange}
+            />
+          </form>
+        </Filter>
         <form>
           <input
             type="text"
@@ -138,10 +168,12 @@ function App() {
             onChange={handleChange}
           />
         </form>
-        <Button onClick={top5}> Top 5</Button>
-        <Button onClick={top20}> Top 20</Button>
-        <Button onClick={top100}> Top 100</Button>
-
+        <Opciones>
+          <Button onClick={stable}> Stable Coins</Button>
+          <Button onClick={top5}> Top 5</Button>
+          <Button onClick={top20}> Top 20</Button>
+          <Button onClick={top100}> Top 100</Button>
+        </Opciones>
         <Table>
           <thead>
             <tr>
@@ -161,20 +193,38 @@ function App() {
               return (
                 <>
                   <CoinsRow
-                    key={coin.id}
-                    id={coin.id}
-                    name={coin.name}
-                    symbol={coin.symbol}
-                    image={coin.image}
-                    price={coin.current_price}
-                    pricechange1={coin.price_change_percentage_1h_in_currency}
-                    pricechange24={coin.price_change_percentage_24h_in_currency}
-                    pricechange7d={coin.price_change_percentage_7d_in_currency}
+                    key={coin.id ? coin.id : ""}
+                    id={coin.id ? coin.id : ""}
+                    name={coin.name ? coin.name : ""}
+                    symbol={coin.symbol ? coin.symbol : ""}
+                    image={coin.image ? coin.image : ""}
+                    price={coin.current_price ? coin.current_price : ""}
+                    pricechange1={
+                      coin.price_change_percentage_1h_in_currency
+                        ? coin.price_change_percentage_1h_in_currency
+                        : "0"
+                    }
+                    pricechange24={
+                      coin.price_change_percentage_24h_in_currency
+                        ? coin.price_change_percentage_24h_in_currency
+                        : "0"
+                    }
+                    pricechange7d={
+                      coin.price_change_percentage_7d_in_currency
+                        ? coin.price_change_percentage_7d_in_currency
+                        : "0"
+                    }
                     pricechange30d={
                       coin.price_change_percentage_30d_in_currency
+                        ? coin.price_change_percentage_30d_in_currency
+                        : "0"
                     }
-                    volumen24h={coin.market_cap_change_24h}
-                    sparkline={coin.sparkline_in_7d}
+                    volumen24h={
+                      coin.market_cap_change_24h
+                        ? coin.market_cap_change_24h
+                        : "0"
+                    }
+                    sparkline={coin.sparkline_in_7d ? coin.sparkline_in_7d : []}
                   />
                 </>
               );

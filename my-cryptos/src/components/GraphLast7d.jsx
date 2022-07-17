@@ -15,11 +15,17 @@ const GraphLast7d = ({ spark, color, nombre }) => {
     smooth: true,
     color: color,
   };
-
-  return (
-    <div>
-      <TinyLine {...config} />
-    </div>
-  );
+  console.log("entre en el grafico" + spark);
+  if (spark.length > 0) {
+    return (
+      <div>
+        console.log("spark.length mayor 0" );
+        <TinyLine {...config} />
+      </div>
+    );
+  } else {
+    console.log("spark.length 0");
+    return <div></div>;
+  }
 };
 export default GraphLast7d;
