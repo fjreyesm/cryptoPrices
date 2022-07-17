@@ -2,9 +2,10 @@ import CoinsRow from "../../components/CoinsRow";
 import { shallow } from "enzyme";
 import { render, screen } from "@testing-library/react";
 import React from "react";
+import "@testing-library/jest-dom";
 
 describe("CoinsRow", () => {
-  it("render Ethereum when Ethereum info is given", () => {
+  test("render Ethereum when Ethereum info is given", () => {
     //when
     render(
       <CoinsRow

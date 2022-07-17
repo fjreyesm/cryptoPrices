@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import CoinsRow from "./components/CoinsRow";
 import styled from "styled-components";
 import useFetch from "./hooks/useFetch";
+import Header from "./components/Header";
 //import LineChart from "./components/LineChart";
 
 function App() {
@@ -28,6 +29,14 @@ function App() {
 
     background: ${(props) => (props.primary ? "orange" : "white")};
     color: ${(props) => (props.primary ? "white" : "black")};
+  `;
+
+  const Table = styled.table`
+    margin: 1em 0 0 0;
+    letter-spacing: 0.8px;
+    background-color: orange;
+    margin: 0 auto;
+    width: 80%;
   `;
 
   const getCoins = async (url) => {
@@ -119,9 +128,8 @@ function App() {
 
   return (
     <>
+      <Header />
       <div className="App">
-        <Title>Tabla de Crytomonedas </Title>
-
         <form>
           <input
             type="text"
@@ -134,7 +142,7 @@ function App() {
         <Button onClick={top20}> Top 20</Button>
         <Button onClick={top100}> Top 100</Button>
 
-        <table className="tabla">
+        <Table>
           <thead>
             <tr>
               <th>Imagen</th>
@@ -172,7 +180,7 @@ function App() {
               );
             })}
           </tbody>
-        </table>
+        </Table>
       </div>
     </>
   );

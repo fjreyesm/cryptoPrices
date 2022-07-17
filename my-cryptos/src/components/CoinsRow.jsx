@@ -1,8 +1,6 @@
 import React from "react";
 import "../styles/board.css";
-
 import GraphLast7d from "./GraphLast7d";
-//import { Line } from "@ant-design/charts";
 
 const CoinsRow = ({
   id,
