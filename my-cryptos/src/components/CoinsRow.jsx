@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/board.css";
 import GraphLast7d from "./GraphLast7d";
+import styled from "styled-components";
 
 const CoinsRow = ({
   id,
@@ -39,6 +40,7 @@ const CoinsRow = ({
       "sparkline" +
       sparkline
   );
+
   return (
     <>
       <tr className="coins-rows">

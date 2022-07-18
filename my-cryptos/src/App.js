@@ -5,7 +5,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import CoinsRow from "./components/CoinsRow";
 import styled from "styled-components";
-import useFetch from "./hooks/useFetch";
 import Header from "./components/Header";
 //import LineChart from "./components/LineChart";
 
@@ -94,10 +93,6 @@ function App() {
       </div>
     );
   }
-
-  const siguiente = () => {
-    setIsLoading(true);
-  };
 
   const handleChange = (e) => {
     setSearch(e.target.value);
