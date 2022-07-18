@@ -40,13 +40,14 @@ const CoinsRow = ({
       "sparkline" +
       sparkline
   );
-
+  const TdGraph = styled.td`
+    width: 50px;
+    align-items: center;
+  `;
   return (
     <>
       <tr className="coins-rows">
-        no entra en tabla
         <td>
-          no entra en elemento
           <img src={image} alt={name} className="imagen" />
         </td>
         <td>
@@ -59,8 +60,8 @@ const CoinsRow = ({
           <p>{price}€</p>
         </td>
         <td>
-          {pricechange1 < 0 ? (
-            <p className="red">{pricechange1.toFixed(2)}%</p>
+          {pricechange1 === 0.0 ? (
+            <p className="red">n/a</p>
           ) : (
             <p className="green">{pricechange1.toFixed(2)}%</p>
           )}
@@ -89,13 +90,13 @@ const CoinsRow = ({
         <td>
           <p>{volumen24h.toFixed(2)}€</p>
         </td>
-        <td>
+        <TdGraph>
           {pricechange7d < 0 ? (
             <GraphLast7d spark={sparkline.price} color="red" nombre={name} />
           ) : (
             <GraphLast7d spark={sparkline.price} color="green" nombre={name} />
           )}
-        </td>
+        </TdGraph>
       </tr>
     </>
   );

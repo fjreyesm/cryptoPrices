@@ -2,16 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const Header = () => {
-  const Button = styled.button`
-    font-size: 1em;
-    margin: 1em;
-    padding: 0.25em 1em;
-    border: 2px solid black;
-    border-radius: 3px;
-
-    background: ${(props) => (props.primary ? "orange" : "white")};
-    color: ${(props) => (props.primary ? "white" : "black")};
-  `;
   const Title = styled.h1`
     font-size: 1.5em;
     margin: 1em 0 0 0;

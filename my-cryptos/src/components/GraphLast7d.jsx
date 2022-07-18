@@ -8,7 +8,7 @@ const GraphLast7d = ({ spark, color, nombre }) => {
   const data = spark;
 
   const config = {
-    height: 220,
+    height: 120,
     width: 50,
     autoFit: false,
     renderer: "svg",

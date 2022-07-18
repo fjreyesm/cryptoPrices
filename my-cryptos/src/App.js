@@ -14,14 +14,27 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
 
-  const Title = styled.h1`
-    margin: 1em 0 0 0;
+  const H3 = styled.h3`
+    margin-left: 150px;
+    margin-right: 150px;
     letter-spacing: 0.8px;
+    background-color: red;
+  `;
+
+  const Form = styled.form`
+    margin-left: 250px;
+    background-color: orange;
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
   `;
 
   const Filter = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
   `;
   const Opciones = styled(Filter)`
@@ -84,7 +97,8 @@ function App() {
     fetchCoins(
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C"
     );
-  }, [isLoading]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (isLoading) {
     return (
@@ -126,7 +140,7 @@ function App() {
 
   const stable = () => {
     const url =
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&category=stablecoins&order=market_cap_desc&per_page=10&page=1&sparkline=false";
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&category=stablecoins&order=market_cap_desc&per_page=10&page=1&sparkline=true";
     fetchCoins(url);
 
     console.log("stable coin");
@@ -145,17 +159,17 @@ function App() {
       <Header />
       <div className="App">
         <Filter>
-          <h3> Lista de seguimiento</h3>
-          <form>
+          <H3> Lista de seguimiento</H3>
+          <Form>
             <input
               type="text"
               placeholder="busqueda"
               className="busqueda"
               onChange={handleChange}
             />
-          </form>
+          </Form>
         </Filter>
-        <form>
+        <form style={{ marginLeft: "11rem" }}>
           <input
             type="text"
             placeholder="busqueda"
@@ -181,6 +195,7 @@ function App() {
               <th>7d</th>
               <th>30d</th>
               <th>24h Volumen</th>
+              <th>7d Grafica</th>
             </tr>
           </thead>
           <tbody>
@@ -197,27 +212,27 @@ function App() {
                     pricechange1={
                       coin.price_change_percentage_1h_in_currency
                         ? coin.price_change_percentage_1h_in_currency
-                        : "0"
+                        : 0
                     }
                     pricechange24={
                       coin.price_change_percentage_24h_in_currency
                         ? coin.price_change_percentage_24h_in_currency
-                        : "0"
+                        : 0
                     }
                     pricechange7d={
                       coin.price_change_percentage_7d_in_currency
                         ? coin.price_change_percentage_7d_in_currency
-                        : "0"
+                        : 0
                     }
                     pricechange30d={
                       coin.price_change_percentage_30d_in_currency
                         ? coin.price_change_percentage_30d_in_currency
-                        : "0"
+                        : 0
                     }
                     volumen24h={
                       coin.market_cap_change_24h
                         ? coin.market_cap_change_24h
-                        : "0"
+                        : 0
                     }
                     sparkline={coin.sparkline_in_7d ? coin.sparkline_in_7d : []}
                   />
