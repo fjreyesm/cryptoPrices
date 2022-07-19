@@ -158,17 +158,8 @@ function App() {
     <>
       <Header />
       <div className="App">
-        <Filter>
-          <H3> Lista de seguimiento</H3>
-          <Form>
-            <input
-              type="text"
-              placeholder="busqueda"
-              className="busqueda"
-              onChange={handleChange}
-            />
-          </Form>
-        </Filter>
+        <H3> Lista de seguimiento</H3>
+
         <form style={{ marginLeft: "11rem" }}>
           <input
             type="text"
@@ -176,6 +167,10 @@ function App() {
             className="busqueda"
             onChange={handleChange}
           />
+
+          <button type="button" className="btn">
+            Clear
+          </button>
         </form>
         <Opciones>
           <Button onClick={stable}> Stable Coins</Button>
