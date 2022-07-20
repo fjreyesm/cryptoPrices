@@ -16,7 +16,7 @@ const Header = () => {
   `;
   return (
     <div>
-      <Title>Principales Critomonedas por capitalización</Title>
+      <Title>Principales Criptomonedas por Capitalización</Title>
     </div>
   );
 };
