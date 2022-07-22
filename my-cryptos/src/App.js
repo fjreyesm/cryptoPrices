@@ -1,12 +1,14 @@
-//import "./App.css";
-
 import React from "react";
-
 import { useState, useEffect } from "react";
 import CoinsRow from "./components/CoinsRow";
 import styled from "styled-components";
 import Header from "./components/Header";
 //import LineChart from "./components/LineChart";
+
+export function Volumen(num) {
+  if (num < 0) return null;
+  return num >= 0 ? true : false;
+}
 
 function App() {
   const [coins, setCoins] = useState(null);
@@ -28,6 +30,7 @@ function App() {
   const Opciones = styled(Filter)`
     justify-content: flex-end;
     margin-right: 7em;
+    margin-bottom: 1.5em;
   `;
 
   const Button = styled.button`
@@ -44,7 +47,7 @@ function App() {
   const Table = styled.table`
     margin: 1em 0 0 0;
     letter-spacing: 0.8px;
-
+    background-color: orange;
     margin: 0 auto;
     width: 80%;
   `;
@@ -100,30 +103,11 @@ function App() {
     setSearch(e.target.value);
   };
 
-  const top5 = () => {
+  const top = (num) => {
     const url =
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=5&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
-    fetchCoins(url);
-
-    console.log("ltop 3");
-    return <p> top 3</p>;
-  };
-  const top20 = () => {
-    const url =
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
-    fetchCoins(url);
-
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page={num}&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
     console.log("top 5");
-    return <p> top 20</p>;
-  };
-
-  const top100 = () => {
-    const url =
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
-    fetchCoins(url);
-
-    console.log("top 5");
-    return <p> top 3</p>;
+    return fetchCoins(url);
   };
 
   const stable = () => {
@@ -162,9 +146,9 @@ function App() {
         </form>
         <Opciones>
           <Button onClick={stable}> Stable Coins</Button>
-          <Button onClick={top5}> Top 5</Button>
-          <Button onClick={top20}> Top 20</Button>
-          <Button onClick={top100}> Top 100</Button>
+          <Button onClick={top(5)}> Top 5</Button>
+          <Button onClick={top(20)}> Top 20</Button>
+          <Button onClick={top(100)}> Top 100</Button>
         </Opciones>
         <Table>
           <thead>

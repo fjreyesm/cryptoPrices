@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/board.css";
+//import "../styles/board.css";
 import GraphLast7d from "./GraphLast7d";
 import styled from "styled-components";
 

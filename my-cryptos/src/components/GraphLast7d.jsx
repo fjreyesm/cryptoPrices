@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { TinyLine } from "@ant-design/plots";
 
 //import { Line } from "lots";@ant-design/p
+export function grafica() {
+  return "svg";
+}
 
 const GraphLast7d = ({ spark, color, nombre }) => {
   const data = spark;
@@ -37,14 +40,14 @@ const GraphLast7d = ({ spark, color, nombre }) => {
       },
     ],
   };
-  console.log("entre en el grafico" + spark);
+  console.log("tipo de TyneLine" + typeof (<TinyLine {...config} />));
   const Div = styled.div`
     width: 60px;
     height: 30px;
     align-items: center;
     background-color: red;
   `;
-  if (spark.length > 0) {
+  if (spark) {
     return (
       <Div>
         <TinyLine {...config} />
