@@ -18,7 +18,6 @@ function App() {
     margin-left: 150px;
     margin-right: 150px;
     letter-spacing: 0.8px;
-    background-color: red;
   `;
 
   const Form = styled.form`
@@ -49,14 +48,14 @@ function App() {
     border: 2px solid black;
     border-radius: 3px;
 
-    background: ${(props) => (props.primary ? "orange" : "white")};
+    background: white;
     color: ${(props) => (props.primary ? "white" : "black")};
   `;
 
   const Table = styled.table`
     margin: 1em 0 0 0;
     letter-spacing: 0.8px;
-    background-color: orange;
+
     margin: 0 auto;
     width: 80%;
   `;
@@ -168,9 +167,9 @@ function App() {
             onChange={handleChange}
           />
 
-          <button type="button" className="btn">
+          <Button type="button" className="btn">
             Clear
-          </button>
+          </Button>
         </form>
         <Opciones>
           <Button onClick={stable}> Stable Coins</Button>
