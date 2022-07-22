@@ -104,17 +104,13 @@ function App() {
     const url =
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=5&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
     fetchCoins(url);
-
-    console.log("ltop 3");
-    return <p> top 3</p>;
   };
   const top20 = () => {
     const url =
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
     fetchCoins(url);
 
-    console.log("top 5");
-    return <p> top 20</p>;
+    console.log("top 20");
   };
 
   const top100 = () => {
@@ -122,17 +118,14 @@ function App() {
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
     fetchCoins(url);
 
-    console.log("top 5");
-    return <p> top 3</p>;
+    console.log("top 100");
   };
 
   const stable = () => {
     const url =
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&category=stablecoins&order=market_cap_desc&per_page=10&page=1&sparkline=true";
     fetchCoins(url);
-
     console.log("stable coin");
-    return <p> estable</p>;
   };
 
   const selectedCoins = coins.filter((coin) => {
