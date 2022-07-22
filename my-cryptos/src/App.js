@@ -20,17 +20,6 @@ function App() {
     letter-spacing: 0.8px;
   `;
 
-  const Form = styled.form`
-    margin-left: 250px;
-    background-color: orange;
-    width: 300px;
-    height: 50px;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-  `;
-
   const Filter = styled.div`
     display: flex;
     justify-content: space-between;

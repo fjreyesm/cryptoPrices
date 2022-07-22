@@ -7,6 +7,11 @@ import Header from "./components/Header";
 
 import CoinsRow from "./components/CoinsRow";
 //render(<CoinsRow />);
+
+/**
+ * @jest-environment jsdom
+ */
+
 test("should verify h1 displays correct text", () => {
   const p = screen.getByText(/coin/i);
   expect(p).toBeInTheDocument();
@@ -24,6 +29,9 @@ test("should return API response with status 200", async () => {
   //fireEvent.click(screen.getByRole('button', { name: /clear/ }'));
   //fireEvent.click(screen.getByRole('table',{}'));
 });
+
+/* eslint-env jest */
+
 test("use jsdom in this test file", () => {
   const element = document.createElement("div");
   expect(element).not.toBeNull();
