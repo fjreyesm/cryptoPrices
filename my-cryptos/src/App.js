@@ -1,7 +1,4 @@
-//import "./App.css";
-
 import React from "react";
-
 import { useState, useEffect } from "react";
 import CoinsRow from "./components/CoinsRow";
 import styled from "styled-components";
@@ -15,7 +12,7 @@ function App() {
   const [search, setSearch] = useState("");
 
   const H3 = styled.h3`
-    margin-left: 150px;
+    margin-left: 15rem;
     margin-right: 150px;
     letter-spacing: 0.8px;
   `;
@@ -28,6 +25,7 @@ function App() {
   const Opciones = styled(Filter)`
     justify-content: flex-end;
     margin-right: 7em;
+    margin-bottom: 2.5em;
   `;
 
   const Button = styled.button`
@@ -59,7 +57,7 @@ function App() {
         const divisas = await response.json();
 
         setIsLoading(false);
-        console.log("is loading?" + isLoading);
+
         return divisas;
       } else {
         setError("Hubo un error al obtener los datos");
@@ -72,7 +70,7 @@ function App() {
   const fetchCoins = async (url) => {
     try {
       const data = await getCoins(url);
-      console.log("is loading in fecht?" + isLoading);
+
       setCoins(data);
 
       setIsLoading(false);
@@ -109,24 +107,24 @@ function App() {
     const url =
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
     fetchCoins(url);
-
-    console.log("top 20");
   };
 
   const top100 = () => {
     const url =
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
     fetchCoins(url);
-
-    console.log("top 100");
   };
 
-  const stable = () => {
-    const url =
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&category=stablecoins&order=market_cap_desc&per_page=10&page=1&sparkline=true";
-    fetchCoins(url);
-    console.log("stable coin");
+  const clearInput = () => {
+    setSearch("");
   };
+
+  // const stable = () => {
+  //   const url =
+  //     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&category=stablecoins&order=market_cap_desc&per_page=10&page=1&sparkline=true";
+  //   fetchCoins(url);
+  //   console.log("stable coin");
+  // };
 
   const selectedCoins = coins.filter((coin) => {
     return coin.name.toLowerCase().includes(search.toLowerCase());
@@ -141,7 +139,7 @@ function App() {
       <div className="App">
         <H3> Lista de seguimiento</H3>
 
-        <form style={{ marginLeft: "11rem" }}>
+        <form style={{ marginLeft: "15rem" }}>
           <input
             type="text"
             placeholder="busqueda"
@@ -149,12 +147,12 @@ function App() {
             onChange={handleChange}
           />
 
-          <Button type="button" className="btn">
+          <Button type="reset" className="btn" onClick={clearInput}>
             Clear
           </Button>
         </form>
         <Opciones>
-          <Button onClick={stable}> Stable Coins</Button>
+          <Button> Stable Coins</Button>
           <Button onClick={top5}> Top 5</Button>
           <Button onClick={top20}> Top 20</Button>
           <Button onClick={top100}> Top 100</Button>

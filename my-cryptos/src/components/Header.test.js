@@ -1,11 +1,13 @@
+import React from "react";
 import { render, screen, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import renderer from "react-test-renderer";
-import Header from "./Header";
-//
-//render(<Header />);
+import { Caution } from "./Header";
 
-test("shoul have title ", () => {
-  const suma = (a, b) => a + b;
-  expect(suma(1, 2)).toBe(3);
+//render(<Caution />);
+test("should verify return an string", () => {
+  const text = Caution();
+  expect(text).not.toBeNull();
+  expect(text).toStrictEqual(
+    <p>Precaucion : Los precios de las criptomonedas son estimados.</p>
+  );
 });

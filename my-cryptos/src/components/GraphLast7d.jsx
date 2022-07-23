@@ -16,13 +16,12 @@ const GraphLast7d = ({ spark, color, nombre }) => {
     smooth: true,
     color: color,
     annotations: [
-      // 平均值
       {
         type: "line",
         start: ["min", "mean"],
         end: ["max", "mean"],
         text: {
-          content: "平均值",
+          content: "",
           offsetY: -2,
           style: {
             textAlign: "left",
@@ -42,7 +41,6 @@ const GraphLast7d = ({ spark, color, nombre }) => {
     width: 60px;
     height: 30px;
     align-items: center;
-    background-color: red;
   `;
   if (spark.length > 0) {
     return (

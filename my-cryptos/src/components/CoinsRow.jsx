@@ -3,6 +3,9 @@ import "../styles/board.css";
 import GraphLast7d from "./GraphLast7d";
 import styled from "styled-components";
 
+export function Decimals(num) {
+  return num.toFixed(2);
+}
 const CoinsRow = ({
   id,
   name,
@@ -16,30 +19,6 @@ const CoinsRow = ({
   volumen24h,
   sparkline,
 }) => {
-  console.log(
-    "id" +
-      id +
-      "name" +
-      name +
-      "price" +
-      price +
-      "image" +
-      image +
-      "symbol" +
-      symbol +
-      "pricechange1" +
-      pricechange1 +
-      "pricechange24" +
-      pricechange24 +
-      "pricechange7d" +
-      pricechange7d +
-      "pricechange30d" +
-      pricechange30d +
-      "volumen24h" +
-      volumen24h +
-      "sparkline" +
-      sparkline
-  );
   const TdGraph = styled.td`
     width: 50px;
     align-items: center;
@@ -60,15 +39,15 @@ const CoinsRow = ({
           <p>{price}€</p>
         </td>
         <td>
-          {pricechange1 === 0.0 ? (
-            <p className="red">n/a</p>
+          {pricechange1 < 0 ? (
+            <p className="red">{pricechange1.toFixed(2)}%</p>
           ) : (
             <p className="green">{pricechange1.toFixed(2)}%</p>
           )}
         </td>
         <td>
           {pricechange24 < 0 ? (
-            <p className="red">{pricechange24.toFixed(2)}%</p>
+            <p className="red">{Decimals(pricechange24)}%</p>
           ) : (
             <p className="green">{pricechange24.toFixed(2)}%</p>
           )}

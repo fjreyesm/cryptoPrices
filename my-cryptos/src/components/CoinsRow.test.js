@@ -1,7 +1,11 @@
 import { render, screen, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { Decimals } from "./CoinsRow";
 
-test("prueba suma", () => {
-  const suma = (a, b) => a + b;
-  expect(suma(1, 2)).toBe(3);
+test("should have 2 decimals", () => {
+  const numero = Decimals(0.178778778);
+
+  expect(numero).toBe("0.18");
+  //expect(numero).toEqual(0.18);
+  expect("something").toEqual("something");
 });

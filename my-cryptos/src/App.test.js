@@ -12,27 +12,16 @@ import CoinsRow from "./components/CoinsRow";
  * @jest-environment jsdom
  */
 
-test("should verify h1 displays correct text", () => {
-  const p = screen.getByText(/coin/i);
-  expect(p).toBeInTheDocument();
-});
-
 let url = "https://api.coingecko.com/api/v3/coins/list";
-test("should sum coins", () => {
-  const suma = (a, b) => a + b;
-  expect(suma(1, 2)).toBe(3);
-});
 
 test("should return API response with status 200", async () => {
   const response = await fetch(url);
   expect(response.status).toBe(200);
-  //fireEvent.click(screen.getByRole('button', { name: /clear/ }'));
-  //fireEvent.click(screen.getByRole('table',{}'));
 });
 
-/* eslint-env jest */
-
-test("use jsdom in this test file", () => {
-  const element = document.createElement("div");
-  expect(element).not.toBeNull();
-});
+test("should return API response with status 404", async () => {
+  const response = await fetch(
+    "https://api.coingecko.com/api/v3/coins/FAKElist"
+  );
+  expect(response.status).toBe(404);
+}, 10000);
