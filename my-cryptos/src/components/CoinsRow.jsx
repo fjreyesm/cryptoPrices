@@ -1,10 +1,12 @@
 import React from "react";
 import "../styles/board.css";
+import GraphLast7d from "./GraphLast7d";
 import styled from "styled-components";
-import LineChart from "./LineChart";
-//import { Line } from "@ant-design/charts";
 
-const CoinsBoard = ({
+export function Decimals(num) {
+  return num.toFixed(2);
+}
+const CoinsRow = ({
   id,
   name,
   price,
@@ -17,11 +19,10 @@ const CoinsBoard = ({
   volumen24h,
   sparkline,
 }) => {
-  console.log("1h " + typeof pricechange1);
-  console.log("24h " + typeof pricechange24);
-  console.log("7d " + typeof pricechange7d);
-  console.log("spark " + sparkline.price[0]);
-  console.log("spark " + sparkline.price[17]);
+  const TdGraph = styled.td`
+    width: 50px;
+    align-items: center;
+  `;
   return (
     <>
       <tr className="coins-rows">
@@ -34,7 +35,6 @@ const CoinsBoard = ({
         <td>
           <p>{symbol}</p>
         </td>
-
         <td>
           <p>{price}€</p>
         </td>
@@ -45,10 +45,9 @@ const CoinsBoard = ({
             <p className="green">{pricechange1.toFixed(2)}%</p>
           )}
         </td>
-
         <td>
           {pricechange24 < 0 ? (
-            <p className="red">{pricechange24.toFixed(2)}%</p>
+            <p className="red">{Decimals(pricechange24)}%</p>
           ) : (
             <p className="green">{pricechange24.toFixed(2)}%</p>
           )}
@@ -60,7 +59,6 @@ const CoinsBoard = ({
             <p className="green">{pricechange7d.toFixed(2)}%</p>
           )}
         </td>
-
         <td>
           {pricechange30d < 0 ? (
             <p className="red">{pricechange30d.toFixed(2)}%</p>
@@ -71,12 +69,16 @@ const CoinsBoard = ({
         <td>
           <p>{volumen24h.toFixed(2)}€</p>
         </td>
-        <td>
-          <LineChart />
-        </td>
+        <TdGraph>
+          {pricechange7d < 0 ? (
+            <GraphLast7d spark={sparkline.price} color="red" nombre={name} />
+          ) : (
+            <GraphLast7d spark={sparkline.price} color="green" nombre={name} />
+          )}
+        </TdGraph>
       </tr>
     </>
   );
 };
 
-export default CoinsBoard;
+export default CoinsRow;

@@ -1,8 +1,9 @@
-//import "./App.css";
+import React from "react";
 import { useState, useEffect } from "react";
-import CoinsBoard from "./components/CoinsBoard";
+import CoinsRow from "./components/CoinsRow";
 import styled from "styled-components";
-import LineChart from "./components/LineChart";
+import Header from "./components/Header";
+//import LineChart from "./components/LineChart";
 
 function App() {
   const [coins, setCoins] = useState(null);
@@ -10,9 +11,21 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
 
-  const Title = styled.h1`
-    margin: 1em 0 0 0;
+  const H3 = styled.h3`
+    margin-left: 15rem;
+    margin-right: 150px;
     letter-spacing: 0.8px;
+  `;
+
+  const Filter = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  `;
+  const Opciones = styled(Filter)`
+    justify-content: flex-end;
+    margin-right: 7em;
+    margin-bottom: 2.5em;
   `;
 
   const Button = styled.button`
@@ -22,23 +35,29 @@ function App() {
     border: 2px solid black;
     border-radius: 3px;
 
-    background: ${(props) => (props.primary ? "orange" : "white")};
+    background: white;
     color: ${(props) => (props.primary ? "white" : "black")};
   `;
 
-  const getCoins = async () => {
+  const Table = styled.table`
+    margin: 1em 0 0 0;
+    letter-spacing: 0.8px;
+
+    margin: 0 auto;
+    width: 80%;
+  `;
+
+  const getCoins = async (url) => {
     try {
       console.log("entré en getCoins");
-      console.log("is loading?" + isLoading);
-      const response = await fetch(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=200&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C"
-      );
-      console.log("response" + response);
+
+      const response = await fetch(url);
+
       if (response.ok) {
         const divisas = await response.json();
-        console.log("respuesta json" + divisas);
+
         setIsLoading(false);
-        console.log("is loading?" + isLoading);
+
         return divisas;
       } else {
         setError("Hubo un error al obtener los datos");
@@ -48,12 +67,12 @@ function App() {
     }
   };
 
-  const fetchCoins = async () => {
+  const fetchCoins = async (url) => {
     try {
-      const data = await getCoins();
-      console.log("is loading in fecht?" + isLoading);
+      const data = await getCoins(url);
+
       setCoins(data);
-      console.log("fetched: " + coins);
+
       setIsLoading(false);
     } catch (error) {
       setError(error);
@@ -61,10 +80,11 @@ function App() {
   };
 
   useEffect(() => {
-    fetchCoins();
-    console.log("Despues de Fetch en Use effect" + coins);
-    console.log("is loading in useEfect?" + isLoading);
-  }, [isLoading]);
+    fetchCoins(
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C"
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (isLoading) {
     return (
@@ -74,44 +94,70 @@ function App() {
     );
   }
 
-  const siguiente = () => {
-    setIsLoading(true);
-  };
-
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
+
+  const top5 = () => {
+    const url =
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=5&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
+    fetchCoins(url);
+  };
+  const top20 = () => {
+    const url =
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
+    fetchCoins(url);
+  };
+
+  const top100 = () => {
+    const url =
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
+    fetchCoins(url);
+  };
+
+  const clearInput = () => {
+    setSearch("");
+  };
+
+  // const stable = () => {
+  //   const url =
+  //     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&category=stablecoins&order=market_cap_desc&per_page=10&page=1&sparkline=true";
+  //   fetchCoins(url);
+  //   console.log("stable coin");
+  // };
+
   const selectedCoins = coins.filter((coin) => {
     return coin.name.toLowerCase().includes(search.toLowerCase());
   });
-
+  console.log("error" + error);
   //{tabla();}
   //
+
   return (
     <>
+      <Header />
       <div className="App">
-        <Title>Crytomonedas con rutas </Title>
-        <h2>Tabla de Precios</h2>
+        <H3> Lista de seguimiento</H3>
 
-        <form>
+        <form style={{ marginLeft: "15rem" }}>
           <input
             type="text"
             placeholder="busqueda"
             className="busqueda"
             onChange={handleChange}
           />
-        </form>
-        <Button onClick={siguiente}> Opcion X</Button>
 
-        <h2>Filtrado 2</h2>
-        <img
-          loading="lazy"
-          alt="tether (USDT) 7d chart"
-          src="https://www.coingecko.com/coins/325/sparkline"
-          width="270"
-          height="100"
-        ></img>
-        <table className="tabla">
+          <Button type="reset" className="btn" onClick={clearInput}>
+            Clear
+          </Button>
+        </form>
+        <Opciones>
+          <Button> Stable Coins</Button>
+          <Button onClick={top5}> Top 5</Button>
+          <Button onClick={top20}> Top 20</Button>
+          <Button onClick={top100}> Top 100</Button>
+        </Opciones>
+        <Table>
           <thead>
             <tr>
               <th>Imagen</th>
@@ -123,33 +169,52 @@ function App() {
               <th>7d</th>
               <th>30d</th>
               <th>24h Volumen</th>
+              <th>7d Grafica</th>
             </tr>
           </thead>
           <tbody>
             {selectedCoins.map((coin) => {
               return (
                 <>
-                  <CoinsBoard
-                    key={coin.id}
-                    id={coin.id}
-                    name={coin.name}
-                    symbol={coin.symbol}
-                    image={coin.image}
-                    price={coin.current_price}
-                    pricechange1={coin.price_change_percentage_1h_in_currency}
-                    pricechange24={coin.price_change_percentage_24h_in_currency}
-                    pricechange7d={coin.price_change_percentage_7d_in_currency}
+                  <CoinsRow
+                    key={coin.id ? coin.id : ""}
+                    id={coin.id ? coin.id : ""}
+                    name={coin.name ? coin.name : ""}
+                    symbol={coin.symbol ? coin.symbol : ""}
+                    image={coin.image ? coin.image : ""}
+                    price={coin.current_price ? coin.current_price : ""}
+                    pricechange1={
+                      coin.price_change_percentage_1h_in_currency
+                        ? coin.price_change_percentage_1h_in_currency
+                        : 0
+                    }
+                    pricechange24={
+                      coin.price_change_percentage_24h_in_currency
+                        ? coin.price_change_percentage_24h_in_currency
+                        : 0
+                    }
+                    pricechange7d={
+                      coin.price_change_percentage_7d_in_currency
+                        ? coin.price_change_percentage_7d_in_currency
+                        : 0
+                    }
                     pricechange30d={
                       coin.price_change_percentage_30d_in_currency
+                        ? coin.price_change_percentage_30d_in_currency
+                        : 0
                     }
-                    volumen24h={coin.market_cap_change_24h}
-                    sparkline={coin.sparkline_in_7d}
+                    volumen24h={
+                      coin.market_cap_change_24h
+                        ? coin.market_cap_change_24h
+                        : 0
+                    }
+                    sparkline={coin.sparkline_in_7d ? coin.sparkline_in_7d : []}
                   />
                 </>
               );
             })}
           </tbody>
-        </table>
+        </Table>
       </div>
     </>
   );
