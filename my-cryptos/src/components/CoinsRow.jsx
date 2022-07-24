@@ -1,11 +1,20 @@
 import React from "react";
-import "../styles/board.css";
+//import "../styles/board.css";
 import GraphLast7d from "./GraphLast7d";
 import styled from "styled-components";
 
 export function Decimals(num) {
   return num.toFixed(2);
 }
+
+export function VerifyType(nft) {
+  if (nft === "crypto") {
+    return "Criptomonedas";
+  } else {
+    return "Tokens";
+  }
+}
+
 const CoinsRow = ({
   id,
   name,
