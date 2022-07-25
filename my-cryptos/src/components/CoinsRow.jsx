@@ -32,9 +32,16 @@ const CoinsRow = ({
     width: 50px;
     align-items: center;
   `;
+
+  const Tr = styled.tr`
+    width: 100%;
+    height: 90%;
+    align-items: center;
+  `;
+
   return (
     <>
-      <tr className="coins-rows">
+      <Tr>
         <td>
           <img src={image} alt={name} className="imagen" />
         </td>
@@ -85,7 +92,7 @@ const CoinsRow = ({
             <GraphLast7d spark={sparkline.price} color="green" nombre={name} />
           )}
         </TdGraph>
-      </tr>
+      </Tr>
     </>
   );
 };

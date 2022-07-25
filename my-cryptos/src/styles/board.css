@@ -24,3 +24,25 @@ img {
 .red {
   color: red;
 }
+
+@media screen and (max-width: 650px) and (min-width: 450px) {
+  body {
+    width: 100%;
+    text-align: center;
+    background-color: pink;
+  }
+
+  .no-priority {
+    display: none;
+  }
+
+  body {
+    padding: 0.5rem;
+    font-size: 16px;
+    min-height: 100vh;
+  }
+
+  form {
+    margin-left: 0.5rem;
+  }
+}
