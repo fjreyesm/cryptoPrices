@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Proyecto Final para el curso de General Assembly FEWD -Spain
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+El proyecto consiste en una pagina desarrollada en **React** con **create-react- app** que muestra una tabla de seguimiento de precios de las principales criptomonedas extraidas de la API pública https://www.coingecko.com/ .
 
-## Available Scripts
+## Usabilidad
 
-In the project directory, you can run:
+Permite desplegar los 5, 20 o 100 primeros lugares de acuerdo al volumen de capitalización.
 
-### `npm start`
+También permite hacer una búsqueda por nombre de la criptomoneda dentro de la lista desplegada.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Imagen del homepage]
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+https://raw.githubusercontent.com/fjreyesm/cryptoPrices/my-cryptos/master/src/HomeCriptomonedas.png
 
-### `npm test`
+## Tecnologias usadas en la implementación
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- JS
+- React
+- Css
+- Styled Components
+- Jest
+- GitHub, Git
 
-### `npm run build`
+### Open code. Quieres comenzar?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clona desde github
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> Realizamos el deploy con Netlify, usando los siguientes comandos
+>
+> - \*\*git clone https://github.com/fjreyesm/cryptoPrices
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Ejecutar el servidor local
 
-### `npm run eject`
+> Vé a la raiz del directorio y ejecuta el comando
+>
+> - **yarn start**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Hacer un Build
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> Vé a la raiz del directorio y ejecuta el comando
+>
+> - **yarn build**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Deploy
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> Realizamos el deploy con Netlify, usando los siguientes comandos
+>
+> - **netlify deploy**
+> - **netlify deploy --prod**

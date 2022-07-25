@@ -25,8 +25,7 @@ function App() {
     align-items: center;
   `;
   const Opciones = styled(Filter)`
-    justify-content: flex-end;
-    margin-right: end;
+    justify-content: center;
     margin-bottom: 2.5em;
   `;
 
