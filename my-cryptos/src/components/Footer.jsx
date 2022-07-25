@@ -13,7 +13,6 @@ const Footer = () => {
   return (
     <Footer>
       This website uses Google Analytics to collect visitor usage statistics.
-      The information is collected anonymously through IP address anonymization.
     </Footer>
   );
 };

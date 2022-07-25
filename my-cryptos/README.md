@@ -8,9 +8,7 @@ Permite desplegar los 5, 20 o 100 primeros lugares de acuerdo al volumen de capi
 
 También permite hacer una búsqueda por nombre de la criptomoneda dentro de la lista desplegada.
 
-![Imagen del homepage]
-
-https://raw.githubusercontent.com/fjreyesm/cryptoPrices/my-cryptos/master/src/HomeCriptomonedas.png
+![Imagen del homepage](/my-cryptos/src/images/HomeCriptomonedas.png)
 
 ## Tecnologias usadas en la implementación
 
