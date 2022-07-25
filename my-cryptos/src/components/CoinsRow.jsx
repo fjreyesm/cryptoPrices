@@ -61,21 +61,21 @@ const CoinsRow = ({
             <p className="green">{pricechange24.toFixed(2)}%</p>
           )}
         </td>
-        <td>
+        <td className="no-priority">
           {pricechange7d < 0 ? (
             <p className="red">{pricechange7d.toFixed(2)}%</p>
           ) : (
             <p className="green">{pricechange7d.toFixed(2)}%</p>
           )}
         </td>
-        <td>
+        <td className="no-priority">
           {pricechange30d < 0 ? (
             <p className="red">{pricechange30d.toFixed(2)}%</p>
           ) : (
             <p className="green">{pricechange30d.toFixed(2)}%</p>
           )}
         </td>
-        <td>
+        <td className="no-priority volume">
           <p>{volumen24h.toFixed(2)}€</p>
         </td>
         <TdGraph>

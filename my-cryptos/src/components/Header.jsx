@@ -20,8 +20,8 @@ const Header = () => {
   `;
 
   const Div = styled.div`
-    margin-left: 15rem;
-    margin-right: 150px;
+    margin-left: left;
+
     letter-spacing: 0.8px;
   `;
   return (

@@ -1,16 +1,44 @@
-* {
-  background-color: blue;
+@media screen and (min-width: 450px) {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    padding: 1.5rem;
+  }
+
+  form {
+    margin-left: 2rem;
+  }
 }
 
-.coins-rows {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1px 5px;
+@media screen and (max-width: 900px) and (min-width: 650px) {
+  body {
+    width: 100%;
+    text-align: center;
+  }
+  .volume {
+    display: none;
+  }
 }
 
-.name {
-  width: 20px;
+@media screen and (max-width: 650px) and (min-width: 450px) {
+  body {
+    width: 100%;
+
+    text-align: center;
+  }
+
+  .no-priority {
+    display: none;
+  }
+
+  body {
+    padding: 0.5rem;
+    font-size: small;
+  }
+
+  form {
+    margin-left: 0.5rem;
+  }
 }

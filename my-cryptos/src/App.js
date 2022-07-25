@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import CoinsRow from "./components/CoinsRow";
 import styled from "styled-components";
 import Header from "./components/Header";
+import "./App.css";
+import Footer from "./components/Footer";
 //import LineChart from "./components/LineChart";
 
 function App() {
@@ -12,7 +14,7 @@ function App() {
   const [search, setSearch] = useState("");
 
   const H3 = styled.h3`
-    margin-left: 15rem;
+    margin-left: 2rem;
     margin-right: 150px;
     letter-spacing: 0.8px;
   `;
@@ -24,7 +26,7 @@ function App() {
   `;
   const Opciones = styled(Filter)`
     justify-content: flex-end;
-    margin-right: 7em;
+    margin-right: end;
     margin-bottom: 2.5em;
   `;
 
@@ -36,7 +38,7 @@ function App() {
     border-radius: 3px;
 
     background: white;
-    color: ${(props) => (props.primary ? "white" : "black")};
+    color: black;
   `;
 
   const Table = styled.table`
@@ -139,7 +141,7 @@ function App() {
       <div className="App">
         <H3> Lista de seguimiento</H3>
 
-        <form style={{ marginLeft: "15rem" }}>
+        <form>
           <input
             type="text"
             placeholder="busqueda"
@@ -166,9 +168,9 @@ function App() {
               <th>Precio</th>
               <th>1h</th>
               <th>24h</th>
-              <th>7d</th>
-              <th>30d</th>
-              <th>24h Volumen</th>
+              <th className="no-priority">7d</th>
+              <th className="no-priority">30d</th>
+              <th className="no-priority volume">24h Volumen</th>
               <th>7d Grafica</th>
             </tr>
           </thead>
@@ -216,6 +218,7 @@ function App() {
           </tbody>
         </Table>
       </div>
+      <Footer />
     </>
   );
 }
