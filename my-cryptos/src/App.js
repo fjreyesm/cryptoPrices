@@ -152,7 +152,7 @@ function App() {
           </Button>
         </form>
         <Opciones>
-          <Button> Stable Coins</Button>
+          {/*<Button> Stable Coins</Button> */}
           <Button onClick={top5}> Top 5</Button>
           <Button onClick={top20}> Top 20</Button>
           <Button onClick={top100}> Top 100</Button>
