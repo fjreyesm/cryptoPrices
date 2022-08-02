@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Header from "./components/Header";
 import "./App.css";
 import Footer from "./components/Footer";
-//import LineChart from "./components/LineChart";
 
 function App() {
   const [coins, setCoins] = useState(null);

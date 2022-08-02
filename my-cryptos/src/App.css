@@ -3,13 +3,6 @@
   max-width: 100%;
 }
 
-@media only screen and (orientation: portrait) {
-  body {
-    height: 100vw;
-    transform: rotate(90deg);
-  }
-}
-
 @media screen and (min-width: 450px) {
   body {
     padding: 1.5rem;
