@@ -12,7 +12,8 @@ const Footer = () => {
   `;
   return (
     <Footer>
-      This website uses Google Analytics to collect visitor usage statistics.
+      Proyecto final del Bootcamp de FEWD de General Assembly/ Fundación Adecco.
+      Hecho por Franklin Reyes Marchel
     </Footer>
   );
 };
