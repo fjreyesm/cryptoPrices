@@ -8,9 +8,9 @@ const GraphLast7d = ({ spark, color, nombre }) => {
   const data = spark;
 
   const config = {
-    height: 120,
-    width: 50,
-    autoFit: false,
+    height: 500,
+    width: 300,
+    autoFit: true,
     renderer: "svg",
     data,
     smooth: true,
@@ -36,10 +36,9 @@ const GraphLast7d = ({ spark, color, nombre }) => {
       },
     ],
   };
-  console.log("entre en el grafico" + spark);
   const Div = styled.div`
-    width: 60px;
-    height: 30px;
+    width: 50px;
+    height: 60px;
     align-items: center;
   `;
   if (spark.length > 0) {
@@ -49,7 +48,6 @@ const GraphLast7d = ({ spark, color, nombre }) => {
       </Div>
     );
   } else {
-    console.log("spark.length 0");
     return <div></div>;
   }
 };

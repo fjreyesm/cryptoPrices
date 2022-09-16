@@ -1,5 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import Table from "react-bootstrap/Table";
+import Container from "react-bootstrap/Container";
 import CoinsRow from "./components/CoinsRow";
 import styled from "styled-components";
 import Header from "./components/Header";
@@ -13,8 +15,6 @@ function App() {
   const [search, setSearch] = useState("");
 
   const H3 = styled.h3`
-    margin-left: 2rem;
-    margin-right: 150px;
     letter-spacing: 0.8px;
   `;
 
@@ -39,12 +39,12 @@ function App() {
     color: black;
   `;
 
-  const Table = styled.table`
+  const Table2 = styled.table`
     margin: 1em 0 0 0;
     letter-spacing: 0.8px;
 
     margin: 0 auto;
-    width: 80%;
+    width: 70%;
   `;
 
   const getCoins = async (url) => {
@@ -119,13 +119,6 @@ function App() {
     setSearch("");
   };
 
-  // const stable = () => {
-  //   const url =
-  //     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&category=stablecoins&order=market_cap_desc&per_page=10&page=1&sparkline=true";
-  //   fetchCoins(url);
-  //   console.log("stable coin");
-  // };
-
   const selectedCoins = coins.filter((coin) => {
     return coin.name.toLowerCase().includes(search.toLowerCase());
   });
@@ -137,27 +130,29 @@ function App() {
     <>
       <Header />
       <div className="App">
-        <H3> Lista de seguimiento</H3>
+        <div className="Busqueda">
+          <H3> Lista de seguimiento</H3>
+          <form>
+            <input
+              type="text"
+              placeholder="busqueda"
+              className="busqueda"
+              onChange={handleChange}
+            />
 
-        <form>
-          <input
-            type="text"
-            placeholder="busqueda"
-            className="busqueda"
-            onChange={handleChange}
-          />
+            <Button type="reset" className="btn" onClick={clearInput}>
+              Clear
+            </Button>
+          </form>
+        </div>
 
-          <Button type="reset" className="btn" onClick={clearInput}>
-            Clear
-          </Button>
-        </form>
         <Opciones>
           {/*<Button> Stable Coins</Button> */}
           <Button onClick={top5}> Top 5</Button>
           <Button onClick={top20}> Top 20</Button>
           <Button onClick={top100}> Top 100</Button>
         </Opciones>
-        <Table>
+        <Table2 responsive="sm">
           <thead>
             <tr>
               <th>Imagen</th>
@@ -166,10 +161,10 @@ function App() {
               <th>Precio</th>
               <th>1h</th>
               <th>24h</th>
-              <th className="no-priority">7d</th>
-              <th className="no-priority">30d</th>
-              <th className="no-priority volume">24h Volumen</th>
-              <th>7d Grafica</th>
+              <th>7d</th>
+              <th className="no-priority ">30d</th>
+              <th className="no-priority">24h Volumen</th>
+              <th className="no-priority2">7d Grafica</th>
             </tr>
           </thead>
           <tbody>
@@ -214,9 +209,9 @@ function App() {
               );
             })}
           </tbody>
-        </Table>
+        </Table2>
       </div>
-      <Footer />
+      <Footer className="prueba" />
     </>
   );
 }

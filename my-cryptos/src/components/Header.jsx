@@ -1,10 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-export function Caution() {
-  return <p>Precaucion : Los precios de las criptomonedas son estimados.</p>;
-}
-
 const Header = () => {
   const Title = styled.h1`
     font-size: 1.5em;
@@ -13,23 +9,16 @@ const Header = () => {
     font-weight: bold;
     color: #f5f5f5;
     text-align: center;
-
+    letter-spacing: 1.8px;
     background: #2f2f2f;
     padding: 0.5em;
     border-radius: 3px;
   `;
 
-  const Div = styled.div`
-    margin-left: left;
-
-    letter-spacing: 0.8px;
-  `;
   return (
     <div>
       <Title>Principales Criptomonedas por Capitalización</Title>
-      <Div>
-        <Caution />
-      </Div>
+      <p>Precaucion : Los precios de las criptomonedas son estimados.</p>
     </div>
   );
 };

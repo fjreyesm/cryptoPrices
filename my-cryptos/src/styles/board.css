@@ -25,23 +25,38 @@ img {
   color: red;
 }
 
-@media screen and (max-width: 650px) and (min-width: 450px) {
-  body {
-    width: 100%;
-    text-align: center;
+@media screen and (max-width: 480px) {
+  .no-priority {
+    display: initial;
   }
 
-  .no-priority {
+  .no-priority2 {
+    display: initial;
+  }
+
+  table {
+    width: 100%;
+    background-color: yellow;
+  }
+
+  table tr {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    padding: 1em;
+    margin-bottom: 1em;
+  }
+
+  table thead {
     display: none;
   }
 
-  body {
-    padding: 0.5rem;
-    font-size: 16px;
-    min-height: 100vh;
+  table td[data-titulo] {
+    display: flex;
   }
 
-  form {
-    margin-left: 0.5rem;
+  table td [data-titulo] {
+    content: attr(data-titulo);
+    width: 90px;
   }
 }

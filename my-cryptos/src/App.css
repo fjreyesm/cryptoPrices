@@ -3,46 +3,39 @@
   max-width: 100%;
 }
 
-@media screen and (min-width: 450px) {
-  body {
-    padding: 1.5rem;
-    min-width: 450px;
-    margin-left: 2rem;
-  }
-
-  form {
-    margin-left: auto;
-  }
+body {
+  height: 100vh;
 }
 
-@media screen and (max-width: 900px) and (min-width: 650px) {
-  body {
-    width: 100%;
-    text-align: center;
-  }
-  .volume {
-    display: none;
-  }
+.Busqueda {
+  display: flex;
+  justify-content: space-between;
 }
 
-@media screen and (max-width: 650px) and (min-width: 450px) {
-  body {
-    width: 100%;
-    text-align: center;
-  }
+/**Do align .Prueba to the bottom**/
+.Prueba {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
 
+/*Si funciona*/
+@media screen and (max-width: 800px) {
+  body {
+    width: 95%;
+  }
   .no-priority {
     display: none;
   }
-
   body {
-    padding: 0.5rem;
-    font-size: 16px;
-    min-height: 100vh;
-    background-color: pink;
+    padding: 0.1rem;
+    margin: 0.1rem;
   }
-
-  form {
-    margin-left: 0.5rem;
+}
+/* si se pone pink*/
+@media screen and (max-width: 650px) {
+  .no-priority2 {
+    display: none;
   }
 }
