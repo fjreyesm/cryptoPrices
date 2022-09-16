@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
-import CoinsRow from "./components/CoinsRow";
+import CoinsRow from "./components/Board";
 import styled from "styled-components";
 import Header from "./components/Header";
 import "./App.css";
@@ -29,7 +29,6 @@ function App() {
   `;
 
   const Button = styled.button`
-    font-size: 1em;
     margin: 1em;
     padding: 0.25em 1em;
     border: 2px solid black;
@@ -44,7 +43,7 @@ function App() {
     letter-spacing: 0.8px;
 
     margin: 0 auto;
-    width: 70%;
+    width: 90%;
   `;
 
   const getCoins = async (url) => {
@@ -122,9 +121,6 @@ function App() {
   const selectedCoins = coins.filter((coin) => {
     return coin.name.toLowerCase().includes(search.toLowerCase());
   });
-  console.log("error" + error);
-  //{tabla();}
-  //
 
   return (
     <>

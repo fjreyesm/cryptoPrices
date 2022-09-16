@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const Header = () => {
   const Title = styled.h1`
-    font-size: 1.5em;
     margin: 1em 0 0 0;
     letter-spacing: 0.8px;
     font-weight: bold;
@@ -18,7 +17,7 @@ const Header = () => {
   return (
     <div>
       <Title>Principales Criptomonedas por Capitalización</Title>
-      <p>Precaucion : Los precios de las criptomonedas son estimados.</p>
+      <p>Precaucion : Valores son estimados.</p>
     </div>
   );
 };

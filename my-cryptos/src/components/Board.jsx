@@ -48,7 +48,7 @@ const CoinsRow = ({
           <img src={image} alt={name} className="imagen" />
         </td>
         <td data-titulo="nombre">
-          <h2 className="cryptoname"> {name}</h2>
+          <h3 className="cryptoname"> {name}</h3>
         </td>
         <td data-titulo="1h">
           <p>{symbol}</p>
