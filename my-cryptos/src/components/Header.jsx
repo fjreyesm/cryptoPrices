@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const Title = styled.h1`
@@ -15,10 +16,12 @@ const Header = () => {
   `;
 
   return (
-    <div>
-      <Title>Principales Criptomonedas por Capitalización</Title>
-      <p>Precaucion : Valores son estimados.</p>
-    </div>
+    <Link to="/">
+      <div>
+        <Title>Principales Criptomonedas por Capitalización</Title>
+        <p>Precaucion : Valores son estimados.</p>
+      </div>
+    </Link>
   );
 };
 

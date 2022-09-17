@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Table from "react-bootstrap/Table";
-import Container from "react-bootstrap/Container";
-import CoinsRow from "./components/Board";
+import { Routes, Route } from "react-router-dom";
+import Coin from "./routes/Coin";
+import CoinsTable from "./components/CoinsTable";
 import styled from "styled-components";
 import Header from "./components/Header";
 import "./App.css";
@@ -38,7 +38,7 @@ function App() {
     color: black;
   `;
 
-  const Table2 = styled.table`
+  const Table = styled.table`
     margin: 1em 0 0 0;
     letter-spacing: 0.8px;
 
@@ -48,13 +48,9 @@ function App() {
 
   const getCoins = async (url) => {
     try {
-      console.log("entré en getCoins");
-
       const response = await fetch(url);
-
       if (response.ok) {
         const divisas = await response.json();
-
         setIsLoading(false);
 
         return divisas;
@@ -125,88 +121,40 @@ function App() {
   return (
     <>
       <Header />
-      <div className="App">
-        <div className="Busqueda">
-          <H3> Lista de seguimiento</H3>
-          <form>
-            <input
-              type="text"
-              placeholder="busqueda"
-              className="busqueda"
-              onChange={handleChange}
-            />
 
-            <Button type="reset" className="btn" onClick={clearInput}>
-              Clear
-            </Button>
-          </form>
-        </div>
+      <div className="Busqueda">
+        <H3> Lista de seguimiento</H3>
+        <form>
+          <input
+            type="text"
+            placeholder="busqueda"
+            className="busqueda"
+            onChange={handleChange}
+          />
 
-        <Opciones>
-          {/*<Button> Stable Coins</Button> */}
-          <Button onClick={top5}> Top 5</Button>
-          <Button onClick={top20}> Top 20</Button>
-          <Button onClick={top100}> Top 100</Button>
-        </Opciones>
-        <Table2 responsive="sm">
-          <thead>
-            <tr>
-              <th>Imagen</th>
-              <th>Nombre</th>
-              <th>Simbolo</th>
-              <th>Precio</th>
-              <th>1h</th>
-              <th>24h</th>
-              <th>7d</th>
-              <th className="no-priority ">30d</th>
-              <th className="no-priority">24h Volumen</th>
-              <th className="no-priority2">7d Grafica</th>
-            </tr>
-          </thead>
-          <tbody>
-            {selectedCoins.map((coin) => {
-              return (
-                <>
-                  <CoinsRow
-                    key={coin.id ? coin.id : ""}
-                    id={coin.id ? coin.id : ""}
-                    name={coin.name ? coin.name : ""}
-                    symbol={coin.symbol ? coin.symbol : ""}
-                    image={coin.image ? coin.image : ""}
-                    price={coin.current_price ? coin.current_price : ""}
-                    pricechange1={
-                      coin.price_change_percentage_1h_in_currency
-                        ? coin.price_change_percentage_1h_in_currency
-                        : 0
-                    }
-                    pricechange24={
-                      coin.price_change_percentage_24h_in_currency
-                        ? coin.price_change_percentage_24h_in_currency
-                        : 0
-                    }
-                    pricechange7d={
-                      coin.price_change_percentage_7d_in_currency
-                        ? coin.price_change_percentage_7d_in_currency
-                        : 0
-                    }
-                    pricechange30d={
-                      coin.price_change_percentage_30d_in_currency
-                        ? coin.price_change_percentage_30d_in_currency
-                        : 0
-                    }
-                    volumen24h={
-                      coin.market_cap_change_24h
-                        ? coin.market_cap_change_24h
-                        : 0
-                    }
-                    sparkline={coin.sparkline_in_7d ? coin.sparkline_in_7d : []}
-                  />
-                </>
-              );
-            })}
-          </tbody>
-        </Table2>
+          <Button type="reset" className="btn" onClick={clearInput}>
+            Clear
+          </Button>
+        </form>
       </div>
+
+      <Opciones>
+        {/*<Button> Stable Coins</Button> */}
+        <Button onClick={top5}> Top 5</Button>
+        <Button onClick={top20}> Top 20</Button>
+        <Button onClick={top100}> Top 100</Button>
+      </Opciones>
+
+      <Routes>
+        <Route path="/" element={<CoinsTable coins={selectedCoins} />} />
+
+        <Route path="/coin" element={<Coin />}>
+          <Route path=":coinId" element={<Coin />} />
+        </Route>
+      </Routes>
+
+      <Table></Table>
+
       <Footer className="prueba" />
     </>
   );

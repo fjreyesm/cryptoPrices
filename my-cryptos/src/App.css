@@ -7,6 +7,18 @@ body {
   height: 100vh;
 }
 
+table thead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+table tbody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .Busqueda {
   display: flex;
   justify-content: space-between;
