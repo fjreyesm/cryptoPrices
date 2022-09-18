@@ -31,6 +31,9 @@ table tbody {
   justify-content: space-between;
   height: 100%;
 }
+.Options {
+  display: initial;
+}
 
 /*Si funciona*/
 @media screen and (max-width: 800px) {
@@ -48,6 +51,10 @@ table tbody {
 /* si se pone pink*/
 @media screen and (max-width: 650px) {
   .no-priority2 {
+    display: none;
+  }
+
+  .Options {
     display: none;
   }
 }

@@ -42,7 +42,7 @@ const CoinsRow = ({
   `;
 
   return (
-    <Tr>
+    <Tr className="Fila">
       <td data-titulo="1h">
         <img src={image} alt={name} className="imagen" />
       </td>

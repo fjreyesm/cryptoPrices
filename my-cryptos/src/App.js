@@ -41,9 +41,8 @@ function App() {
   const Table = styled.table`
     margin: 1em 0 0 0;
     letter-spacing: 0.8px;
-
     margin: 0 auto;
-    width: 90%;
+    max-width: 1200px;
   `;
 
   const getCoins = async (url) => {
@@ -56,6 +55,7 @@ function App() {
         return divisas;
       } else {
         setError("Hubo un error al obtener los datos");
+        console.log(error);
       }
     } catch (error) {
       setError("No pudimos hacer la solicitud" + error);
@@ -121,29 +121,29 @@ function App() {
   return (
     <>
       <Header />
+      <div className="Options Options2">
+        <div className="Busqueda">
+          <H3> Lista de seguimiento</H3>
+          <form>
+            <input
+              type="text"
+              placeholder="busqueda"
+              className="busqueda"
+              onChange={handleChange}
+            />
 
-      <div className="Busqueda">
-        <H3> Lista de seguimiento</H3>
-        <form>
-          <input
-            type="text"
-            placeholder="busqueda"
-            className="busqueda"
-            onChange={handleChange}
-          />
-
-          <Button type="reset" className="btn" onClick={clearInput}>
-            Clear
-          </Button>
-        </form>
+            <Button type="reset" className="btn" onClick={clearInput}>
+              Clear
+            </Button>
+          </form>
+        </div>
+        <Opciones>
+          {/*<Button> Stable Coins</Button> */}
+          <Button onClick={top5}> Top 5</Button>
+          <Button onClick={top20}> Top 20</Button>
+          <Button onClick={top100}> Top 100</Button>
+        </Opciones>
       </div>
-
-      <Opciones>
-        {/*<Button> Stable Coins</Button> */}
-        <Button onClick={top5}> Top 5</Button>
-        <Button onClick={top20}> Top 20</Button>
-        <Button onClick={top100}> Top 100</Button>
-      </Opciones>
 
       <Routes>
         <Route path="/" element={<CoinsTable coins={selectedCoins} />} />

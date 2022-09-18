@@ -22,9 +22,11 @@ const Coin = () => {
 
   return (
     <>
-      <div className="box">{coin.name}</div>
-      <div className="box">
-        <div className="info">
+      <div className="Box">
+        <h1>{coin.name}</h1>
+      </div>
+      <div className="Box">
+        <div className="Info">
           <div className="coin-heading">
             {coin.image ? <img src={coin.image.large} alt="imagen" /> : null}
             {coin.symbol ? <p>{coin.symbol.toUpperCase()}/EUR</p> : null}
@@ -36,16 +38,16 @@ const Coin = () => {
           </div>
         </div>
       </div>
-      <div className="box">
+      <div className="Box">
         <table>
           <thead>
             <tr>
               <th>1h</th>
               <th>24h</th>
               <th>7d</th>
-              <th>14d</th>
-              <th>30d</th>
-              <th>1yr</th>
+              <th className="No-priority">14d</th>
+              <th className="No-priority">30d</th>
+              <th className="No-priority">1yr</th>
             </tr>
           </thead>
           <tbody>
@@ -53,7 +55,7 @@ const Coin = () => {
               <td>
                 {coin.market_data?.price_change_percentage_1h_in_currency ? (
                   <p>
-                    {coin.market_data.price_change_percentage_1h_in_currency.usd.toFixed(
+                    {coin.market_data.price_change_percentage_1h_in_currency.eur.toFixed(
                       1
                     )}
                     %
@@ -63,7 +65,7 @@ const Coin = () => {
               <td>
                 {coin.market_data?.price_change_percentage_24h_in_currency ? (
                   <p>
-                    {coin.market_data.price_change_percentage_24h_in_currency.usd.toFixed(
+                    {coin.market_data.price_change_percentage_24h_in_currency.eur.toFixed(
                       1
                     )}
                     %
@@ -71,9 +73,9 @@ const Coin = () => {
                 ) : null}
               </td>
               <td>
-                {coin.market_data?.price_change_percentage_24h_in_currency ? (
+                {coin.market_data?.price_change_percentage_7d_in_currency ? (
                   <p>
-                    {coin.market_data.price_change_percentage_7d_in_currency.usd.toFixed(
+                    {coin.market_data.price_change_percentage_7d_in_currency.eur.toFixed(
                       1
                     )}
                     %
@@ -81,29 +83,29 @@ const Coin = () => {
                 ) : null}
               </td>
               <td>
-                {coin.market_data?.price_change_percentage_24h_in_currency ? (
+                {coin.market_data?.price_change_percentage_14d_in_currency ? (
                   <p>
-                    {coin.market_data.price_change_percentage_14d_in_currency.usd.toFixed(
+                    {coin.market_data.price_change_percentage_14d_in_currency.eur.toFixed(
                       1
                     )}
                     %
                   </p>
                 ) : null}
               </td>
-              <td>
-                {coin.market_data?.price_change_percentage_24h_in_currency ? (
+              <td className="No-priority">
+                {coin.market_data?.price_change_percentage_30d_in_currency ? (
                   <p>
-                    {coin.market_data.price_change_percentage_30d_in_currency.usd.toFixed(
+                    {coin.market_data.price_change_percentage_30d_in_currency.eur.toFixed(
                       1
                     )}
                     %
                   </p>
                 ) : null}
               </td>
-              <td>
-                {coin.market_data?.price_change_percentage_24h_in_currency ? (
+              <td className="No-priority">
+                {coin.market_data?.price_change_percentage_1y_in_currency ? (
                   <p>
-                    {coin.market_data.price_change_percentage_1y_in_currency.usd.toFixed(
+                    {coin.market_data.price_change_percentage_1y_in_currency.eur.toFixed(
                       1
                     )}
                     %
@@ -114,7 +116,7 @@ const Coin = () => {
           </tbody>
         </table>
       </div>
-      <div className="box">
+      <div className="Box">
         <div className="hilow">
           <div className="row">
             <h4>24 Hour Low</h4>
@@ -136,7 +138,7 @@ const Coin = () => {
           </div>
         </div>
       </div>
-      <div className="box">
+      <div className="Box">
         <div className="github">
           <div className="row">
             <h4>forks</h4>
@@ -156,7 +158,7 @@ const Coin = () => {
               <p>{coin.developer_data.subscribers}</p>
             ) : null}
           </div>
-          <div className="row">
+          <div className="row No-priority">
             <h4>pulls requests merged</h4>
             {coin.market_data?.market_cap ? (
               <p>{coin.developer_data.pull_requests_merged}</p>

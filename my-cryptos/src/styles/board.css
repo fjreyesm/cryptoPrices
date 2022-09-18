@@ -25,7 +25,25 @@ img {
   color: red;
 }
 
-@media screen and (max-width: 480px) {
+tr {
+  display: inline-table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.Options33 {
+  display: none;
+}
+
+@media screen and (max-width: 485px) {
+  .Fila {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    padding: 1em;
+    margin-bottom: 1em;
+  }
+
   .no-priority {
     display: initial;
   }
@@ -34,15 +52,7 @@ img {
     display: initial;
   }
 
-  table tr {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid white;
-    padding: 1em;
-    margin-bottom: 1em;
-  }
-
-  table thead {
+  thead tr {
     display: none;
   }
 
