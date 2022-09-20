@@ -3,8 +3,9 @@
   max-width: 100%;
 }
 
-body {
+.Wrapper {
   height: 100vh;
+  position: relative;
 }
 
 table thead {
@@ -24,13 +25,6 @@ table tbody {
   justify-content: space-between;
 }
 
-/**Do align .Prueba to the bottom**/
-.Prueba {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
 .Options {
   display: initial;
 }

@@ -42,6 +42,11 @@ tr {
     border: 1px solid white;
     padding: 1em;
     margin-bottom: 1em;
+    min-width: 200px;
+  }
+
+  .MainTableheader {
+    display: none;
   }
 
   .no-priority {
@@ -50,10 +55,6 @@ tr {
 
   .no-priority2 {
     display: initial;
-  }
-
-  thead tr {
-    display: none;
   }
 
   table td[data-titulo] {

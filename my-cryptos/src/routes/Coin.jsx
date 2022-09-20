@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import "./Coin.css";
 
 const Coin = () => {
-  const params = useParams();
+  const { coinId } = useParams();
   const [coin, setCoin] = useState({});
 
-  const url = `https://api.coingecko.com/api/v3/coins/${params.coinId}`;
+  const url = `https://api.coingecko.com/api/v3/coins/${coinId}`;
 
   useEffect(() => {
     axios
@@ -46,7 +46,7 @@ const Coin = () => {
               <th>24h</th>
               <th>7d</th>
               <th className="No-priority">14d</th>
-              <th className="No-priority">30d</th>
+              <th>30d</th>
               <th className="No-priority">1yr</th>
             </tr>
           </thead>
@@ -117,6 +117,16 @@ const Coin = () => {
         </table>
       </div>
       <div className="Box">
+        <table>
+          <thead>
+            <tr>
+              <th>24 Hour Low</th>
+              <th>24h</th>
+              <th>7d</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
         <div className="hilow">
           <div className="row">
             <h4>24 Hour Low</h4>

@@ -19,7 +19,6 @@ const Header = () => {
     <Link to="/">
       <div>
         <Title>Principales Criptomonedas por Capitalización</Title>
-        <p>Precaucion : Valores son estimados.</p>
       </div>
     </Link>
   );
