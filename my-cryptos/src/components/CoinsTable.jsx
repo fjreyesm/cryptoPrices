@@ -90,9 +90,9 @@ function CoinsTable(props) {
       </div>
     );
   }
-  const top5 = () => {
+  const top10 = () => {
     const url =
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=5&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d%2C";
     fetchCoins(url);
   };
   const top20 = () => {
@@ -134,7 +134,7 @@ function CoinsTable(props) {
         </div>
         <Opciones>
           {/*<Button> Stable Coins</Button> */}
-          <Button onClick={top5}> Top 5</Button>
+          <Button onClick={top10}> Top 10</Button>
           <Button onClick={top20}> Top 20</Button>
           <Button onClick={top100}> Top 100</Button>
         </Opciones>

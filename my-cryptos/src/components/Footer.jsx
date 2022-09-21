@@ -4,14 +4,12 @@ import styled from "styled-components";
 const Footer = () => {
   const Footer = styled.footer`
     background: #333;
-
     color: #f5f5f5;
     text-align: center;
     margin-top: 1.5em;
-    padding: 1em;
+    padding: 0.4em;
     position: sticky;
     bottom: 0;
-    width: 100%;
   `;
 
   return (

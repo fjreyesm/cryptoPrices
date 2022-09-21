@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./Coin.css";
+import GraphLast7d from "../components/GraphLast7d";
 
 const Coin = () => {
   const { coinId } = useParams();
@@ -40,6 +41,7 @@ const Coin = () => {
       </div>
       <div className="Box">
         <table>
+          <caption> Variación de precios</caption>
           <thead>
             <tr>
               <th>1h</th>
@@ -118,63 +120,66 @@ const Coin = () => {
       </div>
       <div className="Box">
         <table>
+          <caption> Fluctuacion </caption>
           <thead>
             <tr>
-              <th>24 Hour Low</th>
-              <th>24h</th>
-              <th>7d</th>
+              <th>24h Low</th>
+              <th>24h High</th>
+              <th className="No-priority">Mkt Cap</th>
             </tr>
           </thead>
-          <tbody></tbody>
+
+          <tbody>
+            <tr>
+              <td>
+                {coin.market_data?.low_24h ? (
+                  <p>{coin.market_data.low_24h.eur.toLocaleString()}€</p>
+                ) : null}
+              </td>
+              <td>
+                {coin.market_data?.high_24h ? (
+                  <p>{coin.market_data.high_24h.eur.toLocaleString()}€</p>
+                ) : null}
+              </td>
+              <td className="No-priority">
+                {coin.market_data?.market_cap ? (
+                  <p>{coin.market_data.market_cap.eur.toLocaleString()}€</p>
+                ) : null}
+              </td>
+            </tr>
+          </tbody>
         </table>
-        <div className="hilow">
-          <div className="row">
-            <h4>24 Hour Low</h4>
-            {coin.market_data?.low_24h ? (
-              <p>€{coin.market_data.low_24h.usd.toLocaleString()}</p>
-            ) : null}
-          </div>
-          <div className="row">
-            <h4>24 Hour High</h4>
-            {coin.market_data?.high_24h ? (
-              <p>€{coin.market_data.high_24h.usd.toLocaleString()}</p>
-            ) : null}{" "}
-          </div>
-          <div className="row">
-            <h4>Market Cap</h4>
-            {coin.market_data?.market_cap ? (
-              <p>${coin.market_data.market_cap.usd.toLocaleString()}</p>
-            ) : null}
-          </div>
-        </div>
       </div>
       <div className="Box">
-        <div className="github">
-          <div className="row">
-            <h4>forks</h4>
-            {coin.developer_data?.forks ? (
-              <p>{coin.developer_data.forks}</p>
-            ) : null}
-          </div>
-          <div className="row">
-            <h4>starts</h4>
-            {coin.market_data?.high_24h ? (
-              <p>{coin.developer_data.stars}</p>
-            ) : null}{" "}
-          </div>
-          <div className="row">
-            <h4>subscribers</h4>
-            {coin.market_data?.market_cap ? (
-              <p>{coin.developer_data.subscribers}</p>
-            ) : null}
-          </div>
-          <div className="row No-priority">
-            <h4>pulls requests merged</h4>
-            {coin.market_data?.market_cap ? (
-              <p>{coin.developer_data.pull_requests_merged}</p>
-            ) : null}
-          </div>
-        </div>
+        <table>
+          <caption> Repositorio</caption>
+          <thead>
+            <tr>
+              <th>forks</th>
+              <th>stars</th>
+              <th className="No-priority">subscribers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {coin.developer_data?.forks ? (
+                  <p>{coin.developer_data.forks}</p>
+                ) : null}
+              </td>
+              <td>
+                {coin.developer_data?.stars ? (
+                  <p>{coin.developer_data.stars}</p>
+                ) : null}
+              </td>
+              <td className="No-priority">
+                {coin.developer_data?.subscribers ? (
+                  <p>{coin.developer_data.subscribers}</p>
+                ) : null}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </>
   );

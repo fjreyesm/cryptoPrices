@@ -3,9 +3,13 @@
   max-width: 100%;
 }
 
-.Wrapper {
+html,
+body {
   height: 100vh;
-  position: relative;
+}
+
+.Wrapper {
+  min-height: 100vh;
 }
 
 table thead {
@@ -28,6 +32,16 @@ table tbody {
 .Options {
   display: initial;
 }
+footer {
+  position: sticky;
+  bottom: 0;
+
+  width: 100%;
+}
+footer p {
+  font-size: 0.8em;
+  margin: 0;
+}
 
 /*Si funciona*/
 @media screen and (max-width: 800px) {
@@ -42,7 +56,7 @@ table tbody {
     margin: 0.1rem;
   }
 }
-/* si se pone pink*/
+
 @media screen and (max-width: 650px) {
   .no-priority2 {
     display: none;
