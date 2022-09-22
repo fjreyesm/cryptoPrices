@@ -4,11 +4,13 @@ El proyecto consiste en una pagina desarrollada en **React** con **create-react-
 
 ## Usabilidad
 
-Permite desplegar los 5, 20 o 100 primeros lugares de acuerdo al volumen de capitalización.
+Permite desplegar los 10, 20 o 100 primeros lugares de acuerdo al volumen de capitalización.
 
 También permite hacer una búsqueda por nombre de la criptomoneda dentro de la lista desplegada.
 
 ![Imagen del homepage](/my-cryptos/src/images/HomeCriptomonedas.png)
+![Imagen del homepage](/my-cryptos/src/images/CoinResponsive.png)
+![Imagen del homepage](/my-cryptos/src/images/TablaResponsive.png)
 
 ##Url
 https://crypto-gaproject.netlify.app
